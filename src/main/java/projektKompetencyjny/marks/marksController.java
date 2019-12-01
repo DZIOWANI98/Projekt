@@ -9,51 +9,54 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import projektKompetencyjny.Oceny;
+import projektKompetencyjny.Uczen;
 import projektKompetencyjny.doTabeliUcznia;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class marksController implements Initializable {
+import static projektKompetencyjny.setGlobalUczen.getUczen;
 
+public class marksController implements Initializable {
+    Uczen uczen = getUczen();
 
     @FXML
     private Label UserName;
 
     @FXML
-    private TableView<Oceny> tabela;
+    private TableView<doTabeliUcznia> tabela;
 
     @FXML
-    private TableColumn<Oceny, String> przedmiotyColumn;
+    private TableColumn<doTabeliUcznia, String> przedmiotyColumn;
 
     @FXML
-    private TableColumn<Oceny, String> klasowkiColumn;
+    private TableColumn<doTabeliUcznia, String> klasowkiColumn;
 
     @FXML
-    private TableColumn<Oceny, String> pracedomoweColumn;
+    private TableColumn<doTabeliUcznia, String> pracedomoweColumn;
 
     @FXML
-    private TableColumn<Oceny, String> kartkowkiColumn;
+    private TableColumn<doTabeliUcznia, String> kartkowkiColumn;
 
     @FXML
-    private TableColumn<Oceny, String> odpowiedziColumn;
-
+    private TableColumn<doTabeliUcznia, String> odpowiedziColumn;
+    private ObservableList<doTabeliUcznia> studentsModels = FXCollections.observableArrayList(
+            new doTabeliUcznia("Matematyka", "5,4,3", "4,2", "", "")
+    );
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        przedmiotyColumn.setCellValueFactory(new PropertyValueFactory<>("StudentId"));
-        klasowkiColumn.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
-        pracedomoweColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
-        kartkowkiColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
-        odpowiedziColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
+        UserName.setText("Witaj " + uczen.getName() + " " + uczen.getNazwisko() + " o to Twoje oceny:");
+
+        przedmiotyColumn.setCellValueFactory(new PropertyValueFactory<>("Przedmiot"));
+        klasowkiColumn.setCellValueFactory(new PropertyValueFactory<>("Klasowka"));
+        pracedomoweColumn.setCellValueFactory(new PropertyValueFactory<>("PraceDomowe"));
+        kartkowkiColumn.setCellValueFactory(new PropertyValueFactory<>("Kartkowka"));
+        odpowiedziColumn.setCellValueFactory(new PropertyValueFactory<>("Odpowiedz"));
         //add your data to the table here.
-        //tabela.setItems(studentsModels);
+        tabela.setItems(studentsModels);
     }
-
-    private ObservableList<doTabeliUcznia> studentsModels = FXCollections.observableArrayList(
-
-            );
 
 
 

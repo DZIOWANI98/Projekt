@@ -8,8 +8,10 @@ import projektKompetencyjny.Uczen;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static projektKompetencyjny.setGlobalUczen.getUczen;
+
 public class dataController implements Initializable {
-    static Uczen uczen;
+    Uczen uczen = getUczen();
 
     @FXML
     private Label imie;
@@ -53,7 +55,4 @@ public class dataController implements Initializable {
 
     }
 
-    public static void setUczen(Uczen uczen) {
-        dataController.uczen = uczen;
-    }
 }
