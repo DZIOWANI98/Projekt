@@ -71,19 +71,6 @@ public class Uczen {
     }
 
 
-    @Column(name = "miejsce zamieszkania")
-    private String miejsceZamieszkania;
-
-    public String getMiejsceZamieszkania() {
-        return miejsceZamieszkania;
-    }
-
-    public void setMiejsceZamieszkania(String miejsceZamieszkania) {
-        this.miejsceZamieszkania = miejsceZamieszkania;
-    }
-
-
-
     @Override
     public String toString() {
         return "Uczen{" +
