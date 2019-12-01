@@ -24,7 +24,7 @@ public class Rodzic {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "haslo")
+    @Column(name = "hasło")
     private String haslo;
 
 
