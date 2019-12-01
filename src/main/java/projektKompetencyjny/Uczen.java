@@ -34,6 +34,10 @@ public class Uczen {
         this.name = name;
     }
 
+
+    @Column(name = "nazwisko")
+    private String nazwisko;
+
     public String getNazwisko() {
         return nazwisko;
     }
@@ -42,8 +46,9 @@ public class Uczen {
         this.nazwisko = nazwisko;
     }
 
-    @Column(name = "nazwisko")
-    private String nazwisko;
+
+    @Column(name = "hasło")
+    private String haslo;
 
     public String getHaslo() {
         return haslo;
@@ -53,8 +58,6 @@ public class Uczen {
         this.haslo = haslo;
     }
 
-    @Column(name = "hasło")
-    private String haslo;
 
     @Column(name = "email")
     private String email;
@@ -66,6 +69,19 @@ public class Uczen {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
+    @Column(name = "miejsce zamieszkania")
+    private String miejsceZamieszkania;
+
+    public String getMiejsceZamieszkania() {
+        return miejsceZamieszkania;
+    }
+
+    public void setMiejsceZamieszkania(String miejsceZamieszkania) {
+        this.miejsceZamieszkania = miejsceZamieszkania;
+    }
+
 
 
     @Override

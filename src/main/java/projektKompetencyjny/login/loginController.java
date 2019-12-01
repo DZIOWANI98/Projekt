@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import projektKompetencyjny.*;
+import projektKompetencyjny.data.dataController;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -65,6 +66,7 @@ public class loginController implements Initializable {
                     uczniowe.add(employee);
                     if(employee.getEmail().equals(username) && employee.getHaslo().equals(password)){
                         controller.setUserStatus("uczen");
+                        dataController.setUczen(employee);
                     }
                 }
                 tx.commit();
