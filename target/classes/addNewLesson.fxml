@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="533.0" layoutY="361.0" mnemonicParsing="false" text="Ok" />
+      <Button layoutX="470.0" layoutY="361.0" mnemonicParsing="false" text="Cancel" />
+      <Label layoutX="116.0" layoutY="91.0" text="Nazwa przedmiotu:" />
+      <Label layoutX="116.0" layoutY="119.0" text="Prowadzacy:" />
+      <Label layoutX="116.0" layoutY="149.0" text="Sala:" />
+      <Label layoutX="113.0" layoutY="183.0" text="Czas:" />
+      <TextField layoutX="240.0" layoutY="87.0" />
+      <TextField layoutX="240.0" layoutY="115.0" />
+      <ChoiceBox layoutX="239.0" layoutY="179.0" prefWidth="150.0" />
+      <TextField layoutX="240.0" layoutY="145.0" />
+   </children>
+</AnchorPane>
