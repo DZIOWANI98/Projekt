@@ -3,6 +3,7 @@ package projektKompetencyjny;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -22,6 +23,7 @@ public class Uczen {
     public void setId_Ucznia(int id_Ucznia) {
         Id_Ucznia = id_Ucznia;
     }
+
 
     @Column(name = "imię")
     private String name;
@@ -68,6 +70,66 @@ public class Uczen {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    @Column(name = "`miejsce zamieszkania`")
+    private String miejsceZamieszkania;
+
+    public String getMiejsceZamieszkania() {
+        return miejsceZamieszkania;
+    }
+
+    public void setMiejsceZamieszkania(String miejsceZamieszkania) {
+        this.miejsceZamieszkania = miejsceZamieszkania;
+    }
+
+
+    @Column(name = "`miejsce urodzenia`")
+    private String miejsceUrodzenia;
+
+    public String getMiejsceUrodzenia() {
+        return miejsceUrodzenia;
+    }
+
+    public void setMiejsceUrodzenia(String miejsceUrodzenia) {
+        this.miejsceUrodzenia = miejsceUrodzenia;
+    }
+
+
+    @Column(name = "dojeżdża")
+    private boolean czyDojezdza;
+
+    public boolean isCzyDojezdza() {
+        return czyDojezdza;
+    }
+
+    public void setCzyDojezdza(boolean czyDojezdza) {
+        this.czyDojezdza = czyDojezdza;
+    }
+
+
+    @Column(name = "id_klasy")
+    private int idKlasy;
+
+    public int getIdKlasy() {
+        return idKlasy;
+    }
+
+    public void setIdKlasy(int idKlasy) {
+        this.idKlasy = idKlasy;
+    }
+
+
+    @Column(name = "`data urodzenia`")
+    private String dataUrodzenia;
+
+    public String getDataUrodzenia() {
+        return dataUrodzenia;
+    }
+
+    public void setDataUrodzenia(String dataUrodzenia) {
+        this.dataUrodzenia = dataUrodzenia;
     }
 
 

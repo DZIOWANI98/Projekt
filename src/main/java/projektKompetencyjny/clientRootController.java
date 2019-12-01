@@ -23,7 +23,7 @@ public class clientRootController {
           root.getTabs().get(0).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_data.fxml")));
 
           root.getTabs().add(1, new Tab());
-          root.getTabs().get(1).setText("Rozklad zajec");
+          root.getTabs().get(1).setText("Rozkład zajęć");
           root.getTabs().get(1).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_schedule.fxml")));
 
           root.getTabs().add(2, new Tab());
@@ -36,7 +36,7 @@ public class clientRootController {
           root.getTabs().get(0).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_events.fxml")));
 
           root.getTabs().add(1, new Tab());
-          root.getTabs().get(1).setText("Rozklad zajec");
+          root.getTabs().get(1).setText("Rozkład zajęć");
           root.getTabs().get(1).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_schedule.fxml")));
 
           root.getTabs().add(2, new Tab());

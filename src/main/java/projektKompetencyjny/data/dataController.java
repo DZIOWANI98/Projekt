@@ -39,12 +39,18 @@ public class dataController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         imie.setText(uczen.getName());
         nazwisko.setText(uczen.getNazwisko());
-        //miejsceZamieszkania.setText(uczen.getMiejsceZamieszkania());
-        //dataUrodzenia.setText(uczen.getDataUrodzenia());
-        //miejsceUrodzenia.setText(uczen.getMiejsceUrodzenia());
+        miejsceZamieszkania.setText(uczen.getMiejsceZamieszkania());
+        dataUrodzenia.setText(uczen.getDataUrodzenia());
+        miejsceUrodzenia.setText(uczen.getMiejsceUrodzenia());
         email.setText(uczen.getEmail());
-        //klasa.setText(uczen.getIdKlasy());
-        //czyDojezdza.setText("");
+        klasa.setText(Integer.toString(uczen.getIdKlasy()));
+
+        if(uczen.isCzyDojezdza()) {
+            czyDojezdza.setText("tak");
+        } else {
+            czyDojezdza.setText("nie");
+        }
+
     }
 
     public static void setUczen(Uczen uczen) {

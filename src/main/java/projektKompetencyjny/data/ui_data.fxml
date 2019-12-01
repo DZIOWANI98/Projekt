@@ -13,7 +13,7 @@
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="90.0" prefWidth="600.0" text="Dane ucznia" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="90.0" prefWidth="600.0" text="Witaj!" textAlignment="CENTER">
                <font>
                   <Font size="15.0" />
                </font>
