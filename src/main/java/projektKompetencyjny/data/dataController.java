@@ -45,7 +45,7 @@ public class dataController implements Initializable {
         dataUrodzenia.setText(uczen.getDataUrodzenia());
         miejsceUrodzenia.setText(uczen.getMiejsceUrodzenia());
         email.setText(uczen.getEmail());
-        klasa.setText(Integer.toString(uczen.getIdKlasy()));
+        klasa.setText(uczen.getIdKlasy().getNazwa_klasy());
 
         if(uczen.isCzyDojezdza()) {
             czyDojezdza.setText("tak");

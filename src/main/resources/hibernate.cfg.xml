@@ -18,10 +18,19 @@
 
         <!-- Mapping files will go here.... -->
 
-        <mapping class="projektKompetencyjny.Rodzic" />
-        <mapping class="projektKompetencyjny.Nauczyciel" />
-        <mapping class="projektKompetencyjny.Uczen" />
-
+        <mapping class="projektKompetencyjny.Rodzic"/>
+        <mapping class="projektKompetencyjny.Nauczyciel"/>
+        <mapping class="projektKompetencyjny.Uczen"/>
+        <mapping class="projektKompetencyjny.Klasa"/>
+        <mapping class="projektKompetencyjny.Rodzic"/>
+        <mapping class="projektKompetencyjny.Przedmiot"/>
+        <mapping class="projektKompetencyjny.Dzien"/>
+        <mapping class="projektKompetencyjny.Godzina"/>
+        <mapping class="projektKompetencyjny.Lekcja"/>
+        <mapping class="projektKompetencyjny.Oceny"/>
+        <mapping class="projektKompetencyjny.Plan"/>
+        <mapping class="projektKompetencyjny.Relacje"/>
+        <mapping class="projektKompetencyjny.Uczy"/>
 
     </session-factory>
 </hibernate-configuration>

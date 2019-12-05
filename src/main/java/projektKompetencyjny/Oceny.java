@@ -9,37 +9,48 @@ import javax.persistence.*;
 public class Oceny {
 
     @Id
-    @Column(name = "id_ucznia")
-    private int id_ucznia;
+    @Column(name = "id_oceny")
+    @GeneratedValue(generator = "incrementor")
+    @GenericGenerator(name = "incrementor", strategy = "increment")
+    private int id_oceny;
 
-    @Id
-    @Column(name = "id_przedmiotu")
-    private int id_przedmiotu;
+    @ManyToOne
+    @JoinColumn(name = "id_ucznia")
+    private Uczen uczen;
+    @ManyToOne
+    @JoinColumn(name = "id_przedmiotu")
+    private Przedmiot id_przedmiotu;
+    @Column(name = "ocena")
+    private int ocena;
+
+    public Przedmiot getId_przedmiotu() {
+        return id_przedmiotu;
+    }
 
     @Column(name = "data")
     private String data;
 
-    @Id
-    @Column(name = "id_oceny")
-    private int id_oceny;
-
     @Column(name = "rodzaj_oceny")
     private String rodzaj_oceny;
 
-    public int getId_ucznia() {
-        return id_ucznia;
-    }
-
-    public void setId_ucznia(int id_ucznia) {
-        this.id_ucznia = id_ucznia;
-    }
-
-    public int getId_przedmiotu() {
-        return id_przedmiotu;
-    }
-
-    public void setId_przedmiotu(int id_przedmiotu) {
+    public void setId_przedmiotu(Przedmiot id_przedmiotu) {
         this.id_przedmiotu = id_przedmiotu;
+    }
+
+    public int getOcena() {
+        return ocena;
+    }
+
+    public void setOcena(int ocena) {
+        this.ocena = ocena;
+    }
+
+    public Uczen getUczen() {
+        return uczen;
+    }
+
+    public void setUczen(Uczen uczen) {
+        this.uczen = uczen;
     }
 
     public String getData() {

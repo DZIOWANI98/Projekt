@@ -4,6 +4,8 @@ package projektKompetencyjny;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "rodzice")
@@ -27,6 +29,8 @@ public class Rodzic {
     @Column(name = "hasło")
     private String haslo;
 
+    @ManyToMany
+    private List<Uczen> uczen = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -77,5 +81,13 @@ public class Rodzic {
                 ", email='" + email + '\'' +
                 ", haslo='" + haslo + '\'' +
                 '}';
+    }
+
+    public List<Uczen> getUczen() {
+        return uczen;
+    }
+
+    public void setUczen(List<Uczen> uczen) {
+        this.uczen = uczen;
     }
 }

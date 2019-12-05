@@ -41,7 +41,7 @@ public class loginController implements Initializable {
             ArrayList<Rodzic> rodzice = new ArrayList<>();
 
 
-            Configuration con = new Configuration().configure().addAnnotatedClass(Uczen.class);
+            Configuration con = new Configuration().configure();
             SessionFactory sessionFactory = con.buildSessionFactory();
             //Session session = sessionFactory.openSession();
             //Transaction transaction = session.beginTransaction();

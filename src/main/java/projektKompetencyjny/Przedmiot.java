@@ -1,15 +1,13 @@
 package projektKompetencyjny;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "przedmioty")
 public class Przedmiot {
-
 
     @Id
     @Column(name = "id_przedmiotu")
@@ -17,6 +15,10 @@ public class Przedmiot {
 
     @Column(name = "nazwa_przedmiotu")
     private String nazwa_przedmiotu;
+
+    @OneToMany
+    @JoinColumn(name = "id_przedmiotu")
+    private List<Oceny> oceny = new ArrayList<>();
 
     public int getId_przedmiotu() {
         return id_przedmiotu;

@@ -3,12 +3,14 @@ package projektKompetencyjny;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "lekcja")
 public class Lekcja {
 
+    @Id
     @Column(name = "id_lekcji")
     private int id_lekcji;
 

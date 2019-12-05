@@ -21,6 +21,7 @@ public class Klasa {
     @Column(name = "nazwa_klasy")
     private String nazwa_klasy;
 
+
     public int getId_klasy() {
         return id_klasy;
     }
