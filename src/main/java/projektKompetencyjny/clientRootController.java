@@ -29,6 +29,10 @@ public class clientRootController {
           root.getTabs().add(2, new Tab());
           root.getTabs().get(2).setText("Oceny");
           root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_marks.fxml")));
+
+          root.getTabs().add(3, new Tab());
+          root.getTabs().get(3).setText("Przyszłe klasówki/Prace domowe");
+          root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_event_uczen.fxml")));
           break;
         case "nauczyciel":
           root.getTabs().add(0, new Tab());
@@ -41,13 +45,33 @@ public class clientRootController {
 
           root.getTabs().add(2, new Tab());
           root.getTabs().get(2).setText("Oceny");
-          root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_marks.fxml")));
+          root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_marks_admin.fxml")));
 
           root.getTabs().add(3, new Tab());
           root.getTabs().get(3).setText("Komunikator");
           root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_chat.fxml")));
           break;
         case "rodzic":
+          root.getTabs().add(0, new Tab());
+          root.getTabs().get(0).setText("Dane");
+          root.getTabs().get(0).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_data.fxml")));
+
+          root.getTabs().add(1, new Tab());
+          root.getTabs().get(1).setText("Rozkład zajęć");
+          root.getTabs().get(1).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_schedule.fxml")));
+
+          root.getTabs().add(2, new Tab());
+          root.getTabs().get(2).setText("Oceny");
+          root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_marks.fxml")));
+
+          root.getTabs().add(3, new Tab());
+          root.getTabs().get(3).setText("Przyszłe klasówki/Prace domowe");
+          root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_event_uczen.fxml")));
+
+          root.getTabs().add(4, new Tab());
+          root.getTabs().get(4).setText("Uwagi, przyszłe wydarzenia");
+          root.getTabs().get(4).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_rodzic_uwagi.fxml")));
+
           break;
         default:
           throw new IllegalArgumentException("User status error!");
