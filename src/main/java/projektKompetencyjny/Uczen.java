@@ -46,6 +46,11 @@ public class Uczen {
     private String dataUrodzenia;
 
     @ManyToMany
+    @JoinTable(
+            name = "relacje",
+            joinColumns = {@JoinColumn(name = "id_ucznia")},
+            inverseJoinColumns = {@JoinColumn(name = "id_rodzica")}
+    )
     private List<Rodzic> rodzice;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

@@ -4,6 +4,7 @@ package projektKompetencyjny;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "klasa")
@@ -20,6 +21,10 @@ public class Klasa {
 
     @Column(name = "nazwa_klasy")
     private String nazwa_klasy;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_klasy")
+    private List<Event> wydarzenia;
 
 
     public int getId_klasy() {

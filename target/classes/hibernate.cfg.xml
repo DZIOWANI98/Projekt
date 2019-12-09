@@ -31,6 +31,7 @@
         <mapping class="projektKompetencyjny.Plan"/>
         <mapping class="projektKompetencyjny.Relacje"/>
         <mapping class="projektKompetencyjny.Uczy"/>
+        <mapping class="projektKompetencyjny.Event"/>
 
     </session-factory>
 </hibernate-configuration>

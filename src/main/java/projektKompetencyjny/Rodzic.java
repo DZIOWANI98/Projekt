@@ -29,7 +29,7 @@ public class Rodzic {
     @Column(name = "hasło")
     private String haslo;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "rodzice")
     private List<Uczen> uczen = new ArrayList<>();
 
     public int getId() {

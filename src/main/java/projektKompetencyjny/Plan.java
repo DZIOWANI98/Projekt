@@ -15,7 +15,6 @@ public class Plan {
     @Column(name = "id_lekcji")
     private int id_lekcji;
 
-
     public int getId_klasy() {
         return id_klasy;
     }

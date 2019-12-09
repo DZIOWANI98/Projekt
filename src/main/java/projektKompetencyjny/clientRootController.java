@@ -33,6 +33,7 @@ public class clientRootController {
           root.getTabs().add(3, new Tab());
           root.getTabs().get(3).setText("Przyszłe klasówki/Prace domowe");
           root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_event_uczen.fxml")));
+
           break;
         case "nauczyciel":
           root.getTabs().add(0, new Tab());
