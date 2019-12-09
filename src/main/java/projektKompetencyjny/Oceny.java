@@ -33,6 +33,17 @@ public class Oceny {
     @Column(name = "rodzaj_oceny")
     private String rodzaj_oceny;
 
+    @Column(name = "semestr")
+    private int nr_semestru;
+
+    public int getNr_semestru() {
+        return nr_semestru;
+    }
+
+    public void setNr_semestru(int nr_semestru) {
+        this.nr_semestru = nr_semestru;
+    }
+
     public void setId_przedmiotu(Przedmiot id_przedmiotu) {
         this.id_przedmiotu = id_przedmiotu;
     }

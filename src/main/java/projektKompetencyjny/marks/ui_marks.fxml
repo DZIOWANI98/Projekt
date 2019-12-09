@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -7,15 +8,19 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projektKompetencyjny.marks.marksController">
    <children>
-      <Label fx:id="UserName" layoutX="60.0" layoutY="50.0" text="Witaj użykowniku o to Twoje oceny" />
+       <Label fx:id="UserName" layoutX="60.0" layoutY="50.0" text="Witaj użykowniku o to Twoje oceny"/>
        <TableView fx:id="tabela" editable="true" layoutX="33.0" layoutY="100.0" prefHeight="276.0" prefWidth="524.0">
-        <columns>
-            <TableColumn fx:id="przedmiotyColumn" prefWidth="91.0" text="Przedmioty"/>
-            <TableColumn fx:id="klasowkiColumn" prefWidth="89.0" text="Klasówki"/>
-            <TableColumn fx:id="pracedomoweColumn" prefWidth="98.0" text="Prace domowe"/>
-            <TableColumn fx:id="kartkowkiColumn" prefWidth="100.0" text="Kartkówki"/>
-            <TableColumn fx:id="odpowiedziColumn" prefWidth="145.0" text="Odpowiedź"/>
-        </columns>
-      </TableView>
+           <columns>
+               <TableColumn fx:id="przedmiotyColumn" prefWidth="91.0" text="Przedmioty"/>
+               <TableColumn fx:id="klasowkiColumn" prefWidth="89.0" text="Klasówki"/>
+               <TableColumn fx:id="pracedomoweColumn" prefWidth="98.0" text="Prace domowe"/>
+               <TableColumn fx:id="kartkowkiColumn" prefWidth="100.0" text="Kartkówki"/>
+               <TableColumn fx:id="odpowiedziColumn" prefWidth="145.0" text="Odpowiedź"/>
+           </columns>
+       </TableView>
+       <Button fx:id="semestr1" layoutX="366.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#semestr1Clicked"
+               text="Semestr 1"/>
+       <Button fx:id="semestr2" layoutX="439.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#semestr2Clicked"
+               text="Semestr 2"/>
    </children>
 </AnchorPane>

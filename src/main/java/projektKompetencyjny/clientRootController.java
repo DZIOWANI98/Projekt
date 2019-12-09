@@ -28,7 +28,7 @@ public class clientRootController {
 
           root.getTabs().add(2, new Tab());
           root.getTabs().get(2).setText("Oceny");
-          root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_marks.fxml")));
+          root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_mark.fxml")));
 
           root.getTabs().add(3, new Tab());
           root.getTabs().get(3).setText("Przyszłe klasówki/Prace domowe");
@@ -62,7 +62,7 @@ public class clientRootController {
 
           root.getTabs().add(2, new Tab());
           root.getTabs().get(2).setText("Oceny");
-          root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_marks.fxml")));
+          root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_mark.fxml")));
 
           root.getTabs().add(3, new Tab());
           root.getTabs().get(3).setText("Przyszłe klasówki/Prace domowe");
@@ -71,7 +71,6 @@ public class clientRootController {
           root.getTabs().add(4, new Tab());
           root.getTabs().get(4).setText("Uwagi, przyszłe wydarzenia");
           root.getTabs().get(4).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_rodzic_uwagi.fxml")));
-
           break;
         default:
           throw new IllegalArgumentException("User status error!");
