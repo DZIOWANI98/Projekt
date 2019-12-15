@@ -1,75 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projektKompetencyjny.data.dataController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projektKompetencyjny.data.dataController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="90.0" prefWidth="600.0" text="Witaj!" textAlignment="CENTER">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <GridPane prefHeight="373.0" prefWidth="600.0">
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <MaterialDesignIconView fill="#2b285d" glyphName="ACCOUNT_CIRCLE" size="65" textAlignment="CENTER" wrappingWidth="101.0">
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                  </MaterialDesignIconView>
+                  <Label contentDisplay="CENTER" prefHeight="65.0" prefWidth="209.0" style="-fx-font-weight: bold; -fx-font-size: 18;" text="Witaj! Oto twoje dane:" textFill="#2b285d">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <GridPane prefHeight="285.0" prefWidth="600.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="176.0" />
+                  <ColumnConstraints hgrow="NEVER" maxWidth="299.0" minWidth="10.0" prefWidth="176.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="469.0" minWidth="10.0" prefWidth="414.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label text="Imię" GridPane.halignment="LEFT">
+                  <Label style="-fx-font-weight: bold;" text="Imię" textFill="#2b285d" GridPane.halignment="LEFT">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Nazwisko" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                  <Label style="-fx-font-weight: bold;" text="Nazwisko" textFill="#2b285d" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Data urodzenia" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+                  <Label style="-fx-font-weight: bold;" text="Data urodzenia" textFill="#2b285d" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Miejsce zamieszkania" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                  <Label style="-fx-font-weight: bold;" text="Miejsce zamieszkania" textFill="#2b285d" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="E-mail" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+                  <Label style="-fx-font-weight: bold;" text="E-mail" textFill="#2b285d" GridPane.halignment="LEFT" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Miejsce urodzenia" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+                  <Label style="-fx-font-weight: bold;" text="Miejsce urodzenia" textFill="#2b285d" GridPane.halignment="LEFT" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Klasa" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+                  <Label style="-fx-font-weight: bold;" text="Klasa" textFill="#2b285d" GridPane.halignment="LEFT" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Czy dojeżdża" GridPane.halignment="LEFT" GridPane.rowIndex="7">
+                  <Label style="-fx-font-weight: bold;" text="Czy dojeżdża" textFill="#2b285d" GridPane.halignment="LEFT" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>

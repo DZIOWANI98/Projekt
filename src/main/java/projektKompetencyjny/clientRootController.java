@@ -19,6 +19,7 @@ public class clientRootController {
       switch (userStatus.toLowerCase()) {
         case "uczen":
           root.getTabs().add(0, new Tab());
+          //root.getTabs().get(0).setStyle("-fx-background-color: #DEDEDE; -fx-border-color: black;");
           root.getTabs().get(0).setText("Dane");
           root.getTabs().get(0).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_data.fxml")));
 
@@ -31,7 +32,7 @@ public class clientRootController {
           root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_mark.fxml")));
 
           root.getTabs().add(3, new Tab());
-          root.getTabs().get(3).setText("Przyszłe klasówki/Prace domowe");
+          root.getTabs().get(3).setText("Terminarz");
           root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_event_uczen.fxml")));
 
           break;
@@ -66,11 +67,11 @@ public class clientRootController {
           root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_mark.fxml")));
 
           root.getTabs().add(3, new Tab());
-          root.getTabs().get(3).setText("Przyszłe klasówki/Prace domowe");
+          root.getTabs().get(3).setText("Termiarz");
           root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_event_uczen.fxml")));
 
           root.getTabs().add(4, new Tab());
-          root.getTabs().get(4).setText("Uwagi, przyszłe wydarzenia");
+          root.getTabs().get(4).setText("Uwagi i wydarzenia");
           root.getTabs().get(4).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_rodzic_uwagi.fxml")));
           break;
         default:

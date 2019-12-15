@@ -53,7 +53,6 @@ public class marksController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        UserName.setText("Witaj " + uczen.getName() + " " + uczen.getNazwisko() + " o to Twoje oceny:");
         przedmiotyColumn.setCellValueFactory(new PropertyValueFactory<>("Przedmiot"));
         klasowkiColumn.setCellValueFactory(new PropertyValueFactory<>("Klasowka"));
         pracedomoweColumn.setCellValueFactory(new PropertyValueFactory<>("PraceDomowe"));
