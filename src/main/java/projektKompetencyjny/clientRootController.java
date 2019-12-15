@@ -49,9 +49,9 @@ public class clientRootController {
           root.getTabs().get(2).setText("Oceny");
           root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_marks_admin.fxml")));
 
-          root.getTabs().add(2, new Tab());
-          root.getTabs().get(2).setText("Komunikator");
-          root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_chat.fxml")));
+          root.getTabs().add(3, new Tab());
+          root.getTabs().get(3).setText("Komunikator");
+          root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_chat.fxml")));
           break;
         case "rodzic":
           root.getTabs().add(0, new Tab());
