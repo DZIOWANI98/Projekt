@@ -78,6 +78,7 @@ public class loginController implements Initializable {
                     nauczyciele.add(teacher);
                     if(teacher.getEmail().equals(username) && teacher.getHaslo().equals(password)){
                         controller.setUserStatus("nauczyciel");
+                        setGlobalNauczyciel.setNauczyciel(teacher);
                     }
                 }
                 tx.commit();

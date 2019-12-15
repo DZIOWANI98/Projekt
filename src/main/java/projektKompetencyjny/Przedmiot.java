@@ -35,4 +35,12 @@ public class Przedmiot {
     public void setNazwa_przedmiotu(String nazwa_przedmiotu) {
         this.nazwa_przedmiotu = nazwa_przedmiotu;
     }
+
+    public List<Oceny> getOceny() {
+        return oceny;
+    }
+
+    public void setOceny(List<Oceny> oceny) {
+        this.oceny = oceny;
+    }
 }

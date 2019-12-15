@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projektKompetencyjny.adminStuffff.UiEventsAdmin">
+   <children>
+      <TableView fx:id="tabelkaEventAdmin" editable="true" layoutX="46.0" layoutY="125.0" prefHeight="242.0" prefWidth="520.0">
+        <columns>
+          <TableColumn fx:id="futureEvent" prefWidth="255.0" text="Przyszłe klasówki/Prace domowe" />
+          <TableColumn fx:id="data" minWidth="0.0" prefWidth="264.0" text="Data" />
+        </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem fx:id="deleteMenuItem" mnemonicParsing="false" onAction="#deleteRecordOnAction" text="Usuń" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+      <ComboBox fx:id="selectClass" layoutX="46.0" layoutY="63.0" onAction="#updateData" prefWidth="150.0" />
+      <Label layoutX="46.0" layoutY="25.0" prefHeight="17.0" prefWidth="124.0" text="Wybierz klasę" />
+      <TextField fx:id="eventTextArea" layoutX="266.0" layoutY="30.0" prefHeight="25.0" prefWidth="195.0" />
+      <TextField fx:id="dataTextArea" layoutX="266.0" layoutY="88.0" prefHeight="25.0" prefWidth="195.0" />
+      <Label layoutX="266.0" layoutY="6.0" prefHeight="17.0" prefWidth="124.0" text="Event" />
+      <Label layoutX="266.0" layoutY="67.0" prefHeight="17.0" prefWidth="124.0" text="Data" />
+      <Button fx:id="addButton" layoutX="514.0" layoutY="88.0" mnemonicParsing="false" onAction="#addToDatabase" text="Dodaj" />
+      <Label fx:id="errorLabel" layoutX="461.0" layoutY="67.0" prefHeight="17.0" prefWidth="92.0" />
+   </children>
+</AnchorPane>

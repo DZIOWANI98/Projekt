@@ -4,6 +4,7 @@ package projektKompetencyjny;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,15 +17,15 @@ public class Klasa {
     @GenericGenerator(name = "incrementor", strategy = "increment")
     private int id_klasy;
 
-    @Column(name = "id_nauczyciela")
-    private int id_nauczyciela;
-
     @Column(name = "nazwa_klasy")
     private String nazwa_klasy;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_klasy")
     private List<Event> wydarzenia;
+
+    @ManyToMany(mappedBy = "klasy")
+    private List<Nauczyciel> nauczyciel = new ArrayList<>();
 
 
     public int getId_klasy() {
@@ -35,19 +36,27 @@ public class Klasa {
         this.id_klasy = id_klasy;
     }
 
-    public int getId_nauczyciela() {
-        return id_nauczyciela;
-    }
-
-    public void setId_nauczyciela(int id_nauczyciela) {
-        this.id_nauczyciela = id_nauczyciela;
-    }
-
     public String getNazwa_klasy() {
         return nazwa_klasy;
     }
 
     public void setNazwa_klasy(String nazwa_klasy) {
         this.nazwa_klasy = nazwa_klasy;
+    }
+
+    public List<Event> getWydarzenia() {
+        return wydarzenia;
+    }
+
+    public void setWydarzenia(List<Event> wydarzenia) {
+        this.wydarzenia = wydarzenia;
+    }
+
+    public List<Nauczyciel> getNauczyciel() {
+        return nauczyciel;
+    }
+
+    public void setNauczyciel(List<Nauczyciel> nauczyciel) {
+        this.nauczyciel = nauczyciel;
     }
 }

@@ -4,6 +4,7 @@ package projektKompetencyjny;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -20,7 +21,15 @@ public class Event {
     private String event;
 
     @Column(name = "data")
-    private String data;
+    private LocalDate data;
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
 
     @ManyToOne
     @JoinColumn(name = "id_klasy")
@@ -42,13 +51,6 @@ public class Event {
         this.event = event;
     }
 
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
 
     public Klasa getId_klasy() {
         return id_klasy;
@@ -57,4 +59,6 @@ public class Event {
     public void setId_klasy(Klasa id_klasy) {
         this.id_klasy = id_klasy;
     }
+
+
 }

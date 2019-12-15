@@ -4,6 +4,7 @@ package projektKompetencyjny;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "nauczyciele")
@@ -26,6 +27,17 @@ public class Nauczyciel {
 
     @Column(name = "hasło")
     private String haslo;
+
+    @Column(name = "id_przedmiotu")
+    private int id_przedmiotu;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "uczy",
+            joinColumns = {@JoinColumn(name = "id_nauczyciela")},
+            inverseJoinColumns = {@JoinColumn(name = "id_klasy")}
+    )
+    private List<Klasa> klasy;
 
 
     public int getId() {
@@ -77,5 +89,13 @@ public class Nauczyciel {
                 ", email='" + email + '\'' +
                 ", haslo='" + haslo + '\'' +
                 '}';
+    }
+
+    public List<Klasa> getKlasy() {
+        return klasy;
+    }
+
+    public void setKlasy(List<Klasa> klasy) {
+        this.klasy = klasy;
     }
 }

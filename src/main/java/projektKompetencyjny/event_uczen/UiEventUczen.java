@@ -17,10 +17,9 @@ import projektKompetencyjny.Uczen;
 import projektKompetencyjny.doTabeliUcznia;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 import static projektKompetencyjny.setGlobalUczen.getUczen;
 
@@ -61,9 +60,13 @@ public class UiEventUczen implements Initializable {
 
         int klasa = uczen.getIdKlasy().getId_klasy();
 
+        LocalDate localDate = LocalDate.now();
         for (Event event : events) {
             if (event.getId_klasy().getId_klasy() == klasa) {
-                eventyObservableList.add(new doTabeliEvent(event.getEvent(), event.getData()));
+                LocalDate data = event.getData();
+                if (data.isAfter(localDate)) {
+                    eventyObservableList.add(new doTabeliEvent(event.getEvent(), event.getData().toString()));
+                }
             }
         }
         tabelaMain.setItems(eventyObservableList);
