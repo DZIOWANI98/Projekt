@@ -1,0 +1,20 @@
+.table-view {
+   -fx-background-color: transparent;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: #2b285d;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 12px;
+    -fx-font-family: "System";
+    -fx-text-fill: #DEDEDE;
+    -fx-font-weight: none;
+    -fx-alignment: center-left;
+}

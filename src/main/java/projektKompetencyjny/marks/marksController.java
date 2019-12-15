@@ -29,9 +29,6 @@ public class marksController implements Initializable {
     private List<Przedmiot> przedmiotty = new ArrayList<>();
 
     @FXML
-    private Label UserName;
-
-    @FXML
     private TableView<doTabeliUcznia> tabela;
 
     @FXML

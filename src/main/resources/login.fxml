@@ -63,7 +63,7 @@
                   </JFXPasswordField>
                </children>
             </HBox>
-            <JFXButton fx:id="login_button" buttonType="RAISED" prefHeight="46.0" prefWidth="121.0" ripplerFill="WHITE" style="-fx-background-color: #2B285D;" styleClass="login_button" text="Zaloguj" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <JFXButton fx:id="login_button" buttonType="RAISED" prefHeight="46.0" prefWidth="121.0" ripplerFill="WHITE" style="-fx-background-color: #2B285D;" styleClass="login_button" text="Zaloguj" textFill="#dedede" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets top="15.0" />
                </GridPane.margin>
