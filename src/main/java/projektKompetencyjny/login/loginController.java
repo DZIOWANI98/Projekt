@@ -98,13 +98,12 @@ public class loginController implements Initializable {
                 if(controller.getUserStatus().matches("uczen|rodzic|nauczyciel")) {
                     controller.generateUserInterface();
                     Stage stage = new Stage();
-                    stage.setTitle("Main app");
                     if (controller.getUserStatus().equals("uczen")) {
-                        stage.setTitle("Uczen app");
+                        stage.setTitle("Panel ucznia");
                     } else if (controller.getUserStatus().equals("rodzic")) {
-                        stage.setTitle("Rodzic app");
+                        stage.setTitle("Panel rodzica");
                     } else if (controller.getUserStatus().equals("nauczyciel")) {
-                        stage.setTitle("Nauczyciel app");
+                        stage.setTitle("Panel nauczyciela");
                     }
                     stage.setScene(new Scene(root));
                     stage.show();
