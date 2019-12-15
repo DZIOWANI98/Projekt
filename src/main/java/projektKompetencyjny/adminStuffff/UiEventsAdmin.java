@@ -114,32 +114,41 @@ public class UiEventsAdmin implements Initializable {
     void addToDatabase(ActionEvent event) {
 
         String eventText = eventTextArea.getText();
-        LocalDate dataText = LocalDate.parse(dataTextArea.getText());
+        LocalDate dataText = null;
+
+        if(!dataTextArea.getText().isEmpty()) {
+            dataText = LocalDate.parse(dataTextArea.getText());
+        }
+
         Klasa klassa = null;
+
         for (Klasa klass : klasy) {
             if (klass.getNazwa_klasy().equals(selectClass.getSelectionModel().getSelectedItem())) {
                 klassa = klass;
             }
         }
-        if (klassa == null || eventText.isEmpty()) {
-            errorLabel.setText("Blad, puste pola");
+
+        if (klassa == null || eventText.isEmpty() || dataText == null) {
+            errorLabel.setText("Uzupełnij pola.");
+        } else {
+            errorLabel.setText("");
+            Configuration con = new Configuration().configure();
+            SessionFactory sessionFactory = con.buildSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction tx = null;
+            tx = session.beginTransaction();
+            //Add new Employee object
+            Event eve = new Event();
+            eve.setEvent(eventText);
+            eve.setData(dataText);
+            eve.setId_klasy(klassa);
+            //Save the employee in database
+            session.save(eve);
+            //Commit the transaction
+            tx.commit();
+            updateEvent();
+            refresh();
         }
-        Configuration con = new Configuration().configure();
-        SessionFactory sessionFactory = con.buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        Transaction tx = null;
-        tx = session.beginTransaction();
-        //Add new Employee object
-        Event eve = new Event();
-        eve.setEvent(eventText);
-        eve.setData(dataText);
-        eve.setId_klasy(klassa);
-        //Save the employee in database
-        session.save(eve);
-        //Commit the transaction
-        tx.commit();
-        updateEvent();
-        refresh();
     }
 
     private void updateEvent() {

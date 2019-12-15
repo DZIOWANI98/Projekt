@@ -42,8 +42,12 @@ public class clientRootController {
           root.getTabs().get(0).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_events_admin.fxml")));
 
           root.getTabs().add(1, new Tab());
-          root.getTabs().get(1).setText("Oceny");
-          root.getTabs().get(1).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_marks_admin.fxml")));
+          root.getTabs().get(1).setText("Uwagi");
+          root.getTabs().get(1).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_uwagi_admin.fxml")));
+
+          root.getTabs().add(2, new Tab());
+          root.getTabs().get(2).setText("Oceny");
+          root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_marks_admin.fxml")));
 
           root.getTabs().add(2, new Tab());
           root.getTabs().get(2).setText("Komunikator");
