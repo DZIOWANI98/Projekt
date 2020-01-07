@@ -45,7 +45,7 @@ public class UiDataRodzic implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tytulowyLabel.setText("Witaj " + rodzic.getImie() + " " + rodzic.getNazwisko() + " !");
+        tytulowyLabel.setText("Witaj " + rodzic.getImie() + " " + rodzic.getNazwisko() + "! Oto dane ucznia:");
         imie.setText(uczen.getName());
         nazwisko.setText(uczen.getNazwisko());
         miejsceZamieszkania.setText(uczen.getMiejsceZamieszkania());
