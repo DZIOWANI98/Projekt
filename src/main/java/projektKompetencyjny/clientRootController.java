@@ -56,23 +56,27 @@ public class clientRootController {
         case "rodzic":
           root.getTabs().add(0, new Tab());
           root.getTabs().get(0).setText("Dane");
-          root.getTabs().get(0).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_data.fxml")));
+          root.getTabs().get(0).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_data_rodzic.fxml")));
 
           root.getTabs().add(1, new Tab());
           root.getTabs().get(1).setText("Rozkład zajęć");
-          root.getTabs().get(1).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_schedule.fxml")));
+          root.getTabs().get(1).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_schedule_rodzic.fxml")));
 
           root.getTabs().add(2, new Tab());
           root.getTabs().get(2).setText("Oceny");
-          root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_mark.fxml")));
+          root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_mark_rodzic.fxml")));
 
           root.getTabs().add(3, new Tab());
-          root.getTabs().get(3).setText("Termiarz");
-          root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_event_uczen.fxml")));
+          root.getTabs().get(3).setText("Terminarz");
+          root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_event_uczen_rodzic.fxml")));
 
           root.getTabs().add(4, new Tab());
           root.getTabs().get(4).setText("Uwagi i wydarzenia");
           root.getTabs().get(4).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_rodzic_uwagi.fxml")));
+
+          root.getTabs().add(5, new Tab());
+          root.getTabs().get(5).setText("Komunikator");
+          root.getTabs().get(5).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_chat_rodzic.fxml")));
           break;
         default:
           throw new IllegalArgumentException("User status error!");

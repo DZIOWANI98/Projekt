@@ -91,6 +91,7 @@ public class loginController implements Initializable {
                     rodzice.add(parent);
                     if(parent.getEmail().equals(username) && parent.getHaslo().equals(password)){
                         controller.setUserStatus("rodzic");
+                        setGlobalRodzic.setRodzic(parent);
                     }
                 }
                 tx.commit();

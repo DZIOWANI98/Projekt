@@ -1,13 +1,11 @@
-package projektKompetencyjny.rodzic_uwagi;
+package projektKompetencyjny.rodzicFXML;
 
 import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UiRodzicUwagi implements Initializable {
-
-
+public class UiChatRodzic implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
