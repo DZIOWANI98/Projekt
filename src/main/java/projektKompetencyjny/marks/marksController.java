@@ -82,16 +82,37 @@ public class marksController implements Initializable {
                 if (ocena.getId_przedmiotu().getId_przedmiotu() == sub.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia()) {
                     switch (ocena.getRodzaj_oceny()) {
                         case "Kartkówka":
-                            oceny_z_kartkowki.append(ocena.getOcena());
+                            if (oceny_z_kartkowki.length() == 0) {
+                                oceny_z_kartkowki.append(ocena.getOcena());
+                            } else {
+                                oceny_z_kartkowki.append(", ");
+                                oceny_z_kartkowki.append(ocena.getOcena());
+                            }
                             break;
                         case "Praca domowa":
-                            oceny_z_pracDomowych.append(ocena.getOcena());
+                            if (oceny_z_pracDomowych.length() == 0) {
+
+                            } else {
+                                oceny_z_pracDomowych.append(", ");
+                                oceny_z_pracDomowych.append(ocena.getOcena());
+                            }
                             break;
                         case "Odpowiedź":
-                            oceny_z_odpowiedzi.append(ocena.getOcena());
+                            if (oceny_z_odpowiedzi.length() == 0) {
+                                oceny_z_odpowiedzi.append(ocena.getOcena());
+                            } else {
+                                oceny_z_odpowiedzi.append(", ");
+                                oceny_z_odpowiedzi.append(ocena.getOcena());
+                            }
                             break;
                         case "Praca klasowa":
-                            oceny_z_pracyKlasowej.append(ocena.getOcena());
+                            if (oceny_z_pracyKlasowej.length() == 0) {
+                                oceny_z_pracyKlasowej.append(ocena.getOcena());
+                            } else {
+                                oceny_z_pracyKlasowej.append(", ");
+                                oceny_z_pracyKlasowej.append(ocena.getOcena());
+                            }
+                            break;
                     }
                 }
             }
@@ -115,16 +136,37 @@ public class marksController implements Initializable {
                 if (ocena.getId_przedmiotu().getId_przedmiotu() == sub.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia() && ocena.getNr_semestru() == 1) {
                     switch (ocena.getRodzaj_oceny()) {
                         case "Kartkówka":
-                            oceny_z_kartkowki.append(ocena.getOcena());
+                            if (oceny_z_kartkowki.length() == 0) {
+                                oceny_z_kartkowki.append(ocena.getOcena());
+                            } else {
+                                oceny_z_kartkowki.append(", ");
+                                oceny_z_kartkowki.append(ocena.getOcena());
+                            }
                             break;
                         case "Praca domowa":
-                            oceny_z_pracDomowych.append(ocena.getOcena());
+                            if (oceny_z_pracDomowych.length() == 0) {
+
+                            } else {
+                                oceny_z_pracDomowych.append(", ");
+                                oceny_z_pracDomowych.append(ocena.getOcena());
+                            }
                             break;
                         case "Odpowiedź":
-                            oceny_z_odpowiedzi.append(ocena.getOcena());
+                            if (oceny_z_odpowiedzi.length() == 0) {
+                                oceny_z_odpowiedzi.append(ocena.getOcena());
+                            } else {
+                                oceny_z_odpowiedzi.append(", ");
+                                oceny_z_odpowiedzi.append(ocena.getOcena());
+                            }
                             break;
                         case "Praca klasowa":
-                            oceny_z_pracyKlasowej.append(ocena.getOcena());
+                            if (oceny_z_pracyKlasowej.length() == 0) {
+                                oceny_z_pracyKlasowej.append(ocena.getOcena());
+                            } else {
+                                oceny_z_pracyKlasowej.append(", ");
+                                oceny_z_pracyKlasowej.append(ocena.getOcena());
+                            }
+                            break;
                     }
                 }
             }
@@ -149,16 +191,37 @@ public class marksController implements Initializable {
                 if (ocena.getId_przedmiotu().getId_przedmiotu() == sub.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia() && ocena.getNr_semestru() == 2) {
                     switch (ocena.getRodzaj_oceny()) {
                         case "Kartkówka":
-                            oceny_z_kartkowki.append(ocena.getOcena());
+                            if (oceny_z_kartkowki.length() == 0) {
+                                oceny_z_kartkowki.append(ocena.getOcena());
+                            } else {
+                                oceny_z_kartkowki.append(", ");
+                                oceny_z_kartkowki.append(ocena.getOcena());
+                            }
                             break;
                         case "Praca domowa":
-                            oceny_z_pracDomowych.append(ocena.getOcena());
+                            if (oceny_z_pracDomowych.length() == 0) {
+
+                            } else {
+                                oceny_z_pracDomowych.append(", ");
+                                oceny_z_pracDomowych.append(ocena.getOcena());
+                            }
                             break;
                         case "Odpowiedź":
-                            oceny_z_odpowiedzi.append(ocena.getOcena());
+                            if (oceny_z_odpowiedzi.length() == 0) {
+                                oceny_z_odpowiedzi.append(ocena.getOcena());
+                            } else {
+                                oceny_z_odpowiedzi.append(", ");
+                                oceny_z_odpowiedzi.append(ocena.getOcena());
+                            }
                             break;
                         case "Praca klasowa":
-                            oceny_z_pracyKlasowej.append(ocena.getOcena());
+                            if (oceny_z_pracyKlasowej.length() == 0) {
+                                oceny_z_pracyKlasowej.append(ocena.getOcena());
+                            } else {
+                                oceny_z_pracyKlasowej.append(", ");
+                                oceny_z_pracyKlasowej.append(ocena.getOcena());
+                            }
+                            break;
                     }
                 }
             }

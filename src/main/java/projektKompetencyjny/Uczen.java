@@ -57,6 +57,11 @@ public class Uczen {
     @JoinColumn(name = "id_ucznia")
     private List<Oceny> oceny;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_ucznia")
+    private List<Uwaga> uwagi;
+
+
     @Override
     public String toString() {
         return "Uczen{" +
@@ -168,5 +173,13 @@ public class Uczen {
 
     public void setRodzice(List<Rodzic> rodzice) {
         this.rodzice = rodzice;
+    }
+
+    public List<Uwaga> getUwagi() {
+        return uwagi;
+    }
+
+    public void setUwagi(List<Uwaga> uwagi) {
+        this.uwagi = uwagi;
     }
 }

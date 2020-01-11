@@ -14,7 +14,7 @@ public class Nauczyciel {
     @Column(name = "id_nauczyciela")
     @GeneratedValue(generator = "incrementor")
     @GenericGenerator(name = "incrementor", strategy = "increment")
-    private int id;
+    private int id_nauczyciela;
 
     @Column(name = "imię")
     private String imie;
@@ -39,13 +39,17 @@ public class Nauczyciel {
     )
     private List<Klasa> klasy;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_nauczyciela")
+    private List<Uwaga> uwagi;
 
-    public int getId() {
-        return id;
+
+    public int getId_nauczyciela() {
+        return id_nauczyciela;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_nauczyciela(int id_nauczyciela) {
+        this.id_nauczyciela = id_nauczyciela;
     }
 
     public String getImie() {
@@ -83,7 +87,7 @@ public class Nauczyciel {
     @Override
     public String toString() {
         return "Nauczyciel{" +
-                "id=" + id +
+                "id=" + id_nauczyciela +
                 ", imie='" + imie + '\'' +
                 ", nazwisko='" + nazwisko + '\'' +
                 ", email='" + email + '\'' +
