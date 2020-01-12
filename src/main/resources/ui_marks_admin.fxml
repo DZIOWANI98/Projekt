@@ -72,7 +72,7 @@
                         <Insets left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <JFXTextField fx:id="data" focusColor="#2b285d" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <JFXTextField fx:id="dataLabel" focusColor="#2b285d" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
@@ -107,7 +107,7 @@
                         <Insets left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <JFXTextField fx:id="ocena" focusColor="#2b285d" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <JFXTextField fx:id="ocenaLabel" focusColor="#2b285d" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
@@ -118,23 +118,24 @@
                </padding>
             </GridPane>
             <VBox maxHeight="1.7976931348623157E308" prefWidth="600.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <children>
-                  <TableView fx:id="tabela" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="600.0" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="tabela" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefWidth="600.0" style="-fx-background-color: #DEDEDE;">
                      <columns>
-                        <TableColumn fx:id="uczenColumn" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Uczeń" />
-                        <TableColumn fx:id="klasowkiColumn" prefWidth="125.0" sortable="false" text="Praca klasowa" />
-                        <TableColumn fx:id="pracedomoweColumn" prefWidth="125.0" sortable="false" text="Praca domowa" />
-                        <TableColumn fx:id="kartkowkiColumn" prefWidth="125.0" sortable="false" text="Kartkówka" />
-                        <TableColumn fx:id="odpowiedziColumn" prefWidth="125.0" sortable="false" text="Odpowiedź" />
+                        <TableColumn fx:id="uczenColumn" editable="false" maxWidth="1000.0" minWidth="120.0" prefWidth="-1.0" sortable="false" text="Uczeń" />
+                        <TableColumn fx:id="klasowkiColumn" maxWidth="1000.0" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Praca klasowa" />
+                        <TableColumn fx:id="pracedomoweColumn" maxWidth="1000.0" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Praca domowa" />
+                        <TableColumn fx:id="kartkowkiColumn" maxWidth="1000.0" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Kartkówka" />
+                        <TableColumn fx:id="odpowiedziColumn" maxWidth="1000.0" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Odpowiedź" />
+                        <TableColumn fx:id="sredniaColumn" editable="false" maxWidth="1000.0" minWidth="50.0" prefWidth="-1.0" sortable="false" text="Średnia" />
                      </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
             </VBox>
          </children>
       </VBox>

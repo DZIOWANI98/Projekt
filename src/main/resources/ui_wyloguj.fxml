@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minHeight="400.0" minWidth="480.0" prefHeight="400.0" prefWidth="480.0" style="-fx-background-color: #DEDEDE;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projektKompetencyjny.login.wylogujController">
+   <center>
+      <JFXButton fx:id="login_button" buttonType="RAISED" prefHeight="46.0" prefWidth="121.0" ripplerFill="WHITE" style="-fx-background-color: #2B285D;" styleClass="login_button" text="Wyloguj" textFill="#dedede" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <Shadow />
+         </effect>
+      </JFXButton>
+   </center>
+</BorderPane>

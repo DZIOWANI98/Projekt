@@ -35,6 +35,9 @@ public class clientRootController {
           root.getTabs().get(3).setText("Terminarz");
           root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_event_uczen.fxml")));
 
+          root.getTabs().add(4, new Tab());
+          root.getTabs().get(4).setText("Wyloguj");
+          root.getTabs().get(4).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_wyloguj.fxml")));
           break;
         case "nauczyciel":
           root.getTabs().add(0, new Tab());
@@ -52,6 +55,10 @@ public class clientRootController {
           root.getTabs().add(3, new Tab());
           root.getTabs().get(3).setText("Komunikator");
           root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_chat.fxml")));
+
+          root.getTabs().add(4, new Tab());
+          root.getTabs().get(4).setText("Wyloguj");
+          root.getTabs().get(4).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_wyloguj.fxml")));
           break;
         case "rodzic":
           root.getTabs().add(0, new Tab());
@@ -77,6 +84,10 @@ public class clientRootController {
           root.getTabs().add(5, new Tab());
           root.getTabs().get(5).setText("Komunikator");
           root.getTabs().get(5).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_chat_rodzic.fxml")));
+
+          root.getTabs().add(6, new Tab());
+          root.getTabs().get(6).setText("Wyloguj");
+          root.getTabs().get(6).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_wyloguj.fxml")));
           break;
         default:
           throw new IllegalArgumentException("User status error!");
