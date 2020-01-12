@@ -1,20 +1,19 @@
-package projektKompetencyjny;
+package projektKompetencyjny.adminStuffff;
 
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class doTabeliUcznia {
+public class doTabeliMarksAdmin {
 
-    private SimpleStringProperty przedmiot;
+    private SimpleStringProperty uczen;
     private SimpleStringProperty klasowka;
     private SimpleStringProperty praceDomowe;
     private SimpleStringProperty kartkowka;
     private SimpleStringProperty odpowiedz;
     private SimpleDoubleProperty srednia;
 
-    public doTabeliUcznia(String przedmiot, String klasowka, String praceDomowe, String kartkowka, String odpowiedz, Double srednia) {
-        this.przedmiot = new SimpleStringProperty(przedmiot);
+    public doTabeliMarksAdmin(String uczen, String klasowka, String praceDomowe, String kartkowka, String odpowiedz, Double srednia) {
+        this.uczen = new SimpleStringProperty(uczen);
         this.klasowka = new SimpleStringProperty(klasowka);
         this.praceDomowe = new SimpleStringProperty(praceDomowe);
         this.kartkowka = new SimpleStringProperty(kartkowka);
@@ -22,16 +21,17 @@ public class doTabeliUcznia {
         this.srednia = new SimpleDoubleProperty(srednia);
     }
 
-    public String getPrzedmiot() {
-        return przedmiot.get();
+
+    public String getUczen() {
+        return uczen.get();
     }
 
-    public void setPrzedmiot(String przedmiot) {
-        this.przedmiot.set(przedmiot);
+    public void setUczen(String uczen) {
+        this.uczen.set(uczen);
     }
 
-    public SimpleStringProperty przedmiotProperty() {
-        return przedmiot;
+    public SimpleStringProperty uczenProperty() {
+        return uczen;
     }
 
     public String getKlasowka() {

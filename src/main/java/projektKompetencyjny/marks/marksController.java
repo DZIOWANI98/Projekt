@@ -1,5 +1,6 @@
 package projektKompetencyjny.marks;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,6 +29,12 @@ public class marksController implements Initializable {
 
     private List<Przedmiot> przedmiotty = new ArrayList<>();
 
+    private static final int WAGAPRACYKLASOWEJ = 3;
+    private static final int WAGAODPOWIEDZI = 1;
+    private static final int WAGAPRACYDOMOWEJ = 1;
+    private static final int WAGAKARTKOWKI = 2;
+    private double srednia;
+    private int SUMAWAG = 0;
     @FXML
     private TableView<doTabeliUcznia> tabela;
 
@@ -45,6 +52,10 @@ public class marksController implements Initializable {
 
     @FXML
     private TableColumn<doTabeliUcznia, String> odpowiedziColumn;
+
+    @FXML
+    private TableColumn<doTabeliUcznia, Double> sredniaColumn;
+
     private ObservableList<doTabeliUcznia> studentsModels = FXCollections.observableArrayList();
 
     @Override
@@ -55,6 +66,7 @@ public class marksController implements Initializable {
         pracedomoweColumn.setCellValueFactory(new PropertyValueFactory<>("PraceDomowe"));
         kartkowkiColumn.setCellValueFactory(new PropertyValueFactory<>("Kartkowka"));
         odpowiedziColumn.setCellValueFactory(new PropertyValueFactory<>("Odpowiedz"));
+        sredniaColumn.setCellValueFactory(new PropertyValueFactory<>("Srednia"));
 
 
         Configuration con = new Configuration().configure();
@@ -74,6 +86,9 @@ public class marksController implements Initializable {
         List<Oceny> oceny = uczen.getOceny();
 
         for (Przedmiot sub : przedmiotty) {
+            double suma = 0;
+            srednia = 0;
+            SUMAWAG = 0;
             StringBuffer oceny_z_kartkowki = new StringBuffer();
             StringBuffer oceny_z_odpowiedzi = new StringBuffer();
             StringBuffer oceny_z_pracyKlasowej = new StringBuffer();
@@ -82,6 +97,8 @@ public class marksController implements Initializable {
                 if (ocena.getId_przedmiotu().getId_przedmiotu() == sub.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia()) {
                     switch (ocena.getRodzaj_oceny()) {
                         case "Kartkówka":
+                            suma += (ocena.getOcena() * WAGAKARTKOWKI);
+                            SUMAWAG += WAGAKARTKOWKI;
                             if (oceny_z_kartkowki.length() == 0) {
                                 oceny_z_kartkowki.append(ocena.getOcena());
                             } else {
@@ -90,14 +107,18 @@ public class marksController implements Initializable {
                             }
                             break;
                         case "Praca domowa":
+                            suma += (ocena.getOcena() * WAGAPRACYDOMOWEJ);
+                            SUMAWAG += WAGAPRACYDOMOWEJ;
                             if (oceny_z_pracDomowych.length() == 0) {
-
+                                oceny_z_pracDomowych.append(ocena.getOcena());
                             } else {
                                 oceny_z_pracDomowych.append(", ");
                                 oceny_z_pracDomowych.append(ocena.getOcena());
                             }
                             break;
                         case "Odpowiedź":
+                            suma += (ocena.getOcena() * WAGAODPOWIEDZI);
+                            SUMAWAG += WAGAODPOWIEDZI;
                             if (oceny_z_odpowiedzi.length() == 0) {
                                 oceny_z_odpowiedzi.append(ocena.getOcena());
                             } else {
@@ -106,6 +127,8 @@ public class marksController implements Initializable {
                             }
                             break;
                         case "Praca klasowa":
+                            suma += (ocena.getOcena() * WAGAPRACYKLASOWEJ);
+                            SUMAWAG += WAGAPRACYKLASOWEJ;
                             if (oceny_z_pracyKlasowej.length() == 0) {
                                 oceny_z_pracyKlasowej.append(ocena.getOcena());
                             } else {
@@ -116,7 +139,12 @@ public class marksController implements Initializable {
                     }
                 }
             }
-            studentsModels.add(new doTabeliUcznia(sub.getNazwa_przedmiotu(), oceny_z_pracyKlasowej.toString(), oceny_z_pracDomowych.toString(), oceny_z_kartkowki.toString(), oceny_z_odpowiedzi.toString()));
+            srednia = (double) suma / SUMAWAG;
+            srednia *= 100;
+            srednia = Math.round(srednia);
+            srednia /= 100;
+            studentsModels.add(new doTabeliUcznia(sub.getNazwa_przedmiotu(), oceny_z_pracyKlasowej.toString(), oceny_z_pracDomowych.toString(), oceny_z_kartkowki.toString(),
+                    oceny_z_odpowiedzi.toString(), srednia));
             //add your data to the table here.
         }
         tabela.setItems(studentsModels);
@@ -128,14 +156,19 @@ public class marksController implements Initializable {
         List<Oceny> oceny = uczen.getOceny();
 
         for (Przedmiot sub : przedmiotty) {
+            double suma = 0;
+            srednia = 0;
+            SUMAWAG = 0;
             StringBuffer oceny_z_kartkowki = new StringBuffer();
             StringBuffer oceny_z_odpowiedzi = new StringBuffer();
             StringBuffer oceny_z_pracyKlasowej = new StringBuffer();
             StringBuffer oceny_z_pracDomowych = new StringBuffer();
             for (Oceny ocena : oceny) {
-                if (ocena.getId_przedmiotu().getId_przedmiotu() == sub.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia() && ocena.getNr_semestru() == 1) {
+                if (ocena.getId_przedmiotu().getId_przedmiotu() == sub.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia()) {
                     switch (ocena.getRodzaj_oceny()) {
                         case "Kartkówka":
+                            suma += (ocena.getOcena() * WAGAKARTKOWKI);
+                            SUMAWAG += WAGAKARTKOWKI;
                             if (oceny_z_kartkowki.length() == 0) {
                                 oceny_z_kartkowki.append(ocena.getOcena());
                             } else {
@@ -144,14 +177,18 @@ public class marksController implements Initializable {
                             }
                             break;
                         case "Praca domowa":
+                            suma += (ocena.getOcena() * WAGAPRACYDOMOWEJ);
+                            SUMAWAG += WAGAPRACYDOMOWEJ;
                             if (oceny_z_pracDomowych.length() == 0) {
-
+                                oceny_z_pracDomowych.append(ocena.getOcena());
                             } else {
                                 oceny_z_pracDomowych.append(", ");
                                 oceny_z_pracDomowych.append(ocena.getOcena());
                             }
                             break;
                         case "Odpowiedź":
+                            suma += (ocena.getOcena() * WAGAODPOWIEDZI);
+                            SUMAWAG += WAGAODPOWIEDZI;
                             if (oceny_z_odpowiedzi.length() == 0) {
                                 oceny_z_odpowiedzi.append(ocena.getOcena());
                             } else {
@@ -160,6 +197,8 @@ public class marksController implements Initializable {
                             }
                             break;
                         case "Praca klasowa":
+                            suma += (ocena.getOcena() * WAGAPRACYKLASOWEJ);
+                            SUMAWAG += WAGAPRACYKLASOWEJ;
                             if (oceny_z_pracyKlasowej.length() == 0) {
                                 oceny_z_pracyKlasowej.append(ocena.getOcena());
                             } else {
@@ -170,7 +209,12 @@ public class marksController implements Initializable {
                     }
                 }
             }
-            studentsModels.add(new doTabeliUcznia(sub.getNazwa_przedmiotu(), oceny_z_pracyKlasowej.toString(), oceny_z_pracDomowych.toString(), oceny_z_kartkowki.toString(), oceny_z_odpowiedzi.toString()));
+            srednia = (double) suma / SUMAWAG;
+            srednia *= 100;
+            srednia = Math.round(srednia);
+            srednia /= 100;
+            studentsModels.add(new doTabeliUcznia(sub.getNazwa_przedmiotu(), oceny_z_pracyKlasowej.toString(), oceny_z_pracDomowych.toString(), oceny_z_kartkowki.toString(),
+                    oceny_z_odpowiedzi.toString(), srednia));
             //add your data to the table here.
         }
         tabela.setItems(studentsModels);
@@ -183,14 +227,19 @@ public class marksController implements Initializable {
         List<Oceny> oceny = uczen.getOceny();
 
         for (Przedmiot sub : przedmiotty) {
+            double suma = 0;
+            srednia = 0;
+            SUMAWAG = 0;
             StringBuffer oceny_z_kartkowki = new StringBuffer();
             StringBuffer oceny_z_odpowiedzi = new StringBuffer();
             StringBuffer oceny_z_pracyKlasowej = new StringBuffer();
             StringBuffer oceny_z_pracDomowych = new StringBuffer();
             for (Oceny ocena : oceny) {
-                if (ocena.getId_przedmiotu().getId_przedmiotu() == sub.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia() && ocena.getNr_semestru() == 2) {
+                if (ocena.getId_przedmiotu().getId_przedmiotu() == sub.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia()) {
                     switch (ocena.getRodzaj_oceny()) {
                         case "Kartkówka":
+                            suma += (ocena.getOcena() * WAGAKARTKOWKI);
+                            SUMAWAG += WAGAKARTKOWKI;
                             if (oceny_z_kartkowki.length() == 0) {
                                 oceny_z_kartkowki.append(ocena.getOcena());
                             } else {
@@ -199,14 +248,18 @@ public class marksController implements Initializable {
                             }
                             break;
                         case "Praca domowa":
+                            suma += (ocena.getOcena() * WAGAPRACYDOMOWEJ);
+                            SUMAWAG += WAGAPRACYDOMOWEJ;
                             if (oceny_z_pracDomowych.length() == 0) {
-
+                                oceny_z_pracDomowych.append(ocena.getOcena());
                             } else {
                                 oceny_z_pracDomowych.append(", ");
                                 oceny_z_pracDomowych.append(ocena.getOcena());
                             }
                             break;
                         case "Odpowiedź":
+                            suma += (ocena.getOcena() * WAGAODPOWIEDZI);
+                            SUMAWAG += WAGAODPOWIEDZI;
                             if (oceny_z_odpowiedzi.length() == 0) {
                                 oceny_z_odpowiedzi.append(ocena.getOcena());
                             } else {
@@ -215,6 +268,8 @@ public class marksController implements Initializable {
                             }
                             break;
                         case "Praca klasowa":
+                            suma += (ocena.getOcena() * WAGAPRACYKLASOWEJ);
+                            SUMAWAG += WAGAPRACYKLASOWEJ;
                             if (oceny_z_pracyKlasowej.length() == 0) {
                                 oceny_z_pracyKlasowej.append(ocena.getOcena());
                             } else {
@@ -225,11 +280,15 @@ public class marksController implements Initializable {
                     }
                 }
             }
-            studentsModels.add(new doTabeliUcznia(sub.getNazwa_przedmiotu(), oceny_z_pracyKlasowej.toString(), oceny_z_pracDomowych.toString(), oceny_z_kartkowki.toString(), oceny_z_odpowiedzi.toString()));
+            srednia = (double) suma / SUMAWAG;
+            srednia *= 100;
+            srednia = Math.round(srednia);
+            srednia /= 100;
+            studentsModels.add(new doTabeliUcznia(sub.getNazwa_przedmiotu(), oceny_z_pracyKlasowej.toString(), oceny_z_pracDomowych.toString(), oceny_z_kartkowki.toString(),
+                    oceny_z_odpowiedzi.toString(), srednia));
             //add your data to the table here.
         }
         tabela.setItems(studentsModels);
     }
-
 
 }

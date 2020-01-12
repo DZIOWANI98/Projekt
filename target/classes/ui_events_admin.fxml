@@ -93,7 +93,7 @@
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <JFXDatePicker fx:id="datePicker" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                   <JFXDatePicker fx:id="datePicker" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
                </children>
                <VBox.margin>
                   <Insets />
@@ -116,7 +116,8 @@
                <contextMenu>
                   <ContextMenu>
                     <items>
-                      <MenuItem fx:id="deleteMenuItem" mnemonicParsing="false" onAction="#deleteRecordOnAction" text="Usuń" />
+                        <MenuItem fx:id="deleteMenuItem" mnemonicParsing="false" onAction="#deleteRecordOnAction"
+                                  text="Usuń"/>
                     </items>
                   </ContextMenu>
                </contextMenu>
