@@ -164,7 +164,7 @@ public class marksController implements Initializable {
             StringBuffer oceny_z_pracyKlasowej = new StringBuffer();
             StringBuffer oceny_z_pracDomowych = new StringBuffer();
             for (Oceny ocena : oceny) {
-                if (ocena.getId_przedmiotu().getId_przedmiotu() == sub.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia()) {
+                if (ocena.getId_przedmiotu().getId_przedmiotu() == sub.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia() && ocena.getNr_semestru() == 1) {
                     switch (ocena.getRodzaj_oceny()) {
                         case "Kartkówka":
                             suma += (ocena.getOcena() * WAGAKARTKOWKI);
@@ -235,7 +235,7 @@ public class marksController implements Initializable {
             StringBuffer oceny_z_pracyKlasowej = new StringBuffer();
             StringBuffer oceny_z_pracDomowych = new StringBuffer();
             for (Oceny ocena : oceny) {
-                if (ocena.getId_przedmiotu().getId_przedmiotu() == sub.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia()) {
+                if (ocena.getId_przedmiotu().getId_przedmiotu() == sub.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia() && ocena.getNr_semestru() == 2) {
                     switch (ocena.getRodzaj_oceny()) {
                         case "Kartkówka":
                             suma += (ocena.getOcena() * WAGAKARTKOWKI);

@@ -3,6 +3,7 @@ package projektKompetencyjny;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "oceny")
@@ -28,7 +29,7 @@ public class Oceny {
     }
 
     @Column(name = "data")
-    private String data;
+    private LocalDate data;
 
     @Column(name = "rodzaj_oceny")
     private String rodzaj_oceny;
@@ -64,13 +65,6 @@ public class Oceny {
         this.uczen = uczen;
     }
 
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
 
     public int getId_oceny() {
         return id_oceny;
@@ -86,5 +80,13 @@ public class Oceny {
 
     public void setRodzaj_oceny(String rodzaj_oceny) {
         this.rodzaj_oceny = rodzaj_oceny;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 }
