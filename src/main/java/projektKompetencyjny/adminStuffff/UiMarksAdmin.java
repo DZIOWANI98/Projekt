@@ -102,7 +102,7 @@ public class UiMarksAdmin implements Initializable {
         odpowiedziColumn.setCellValueFactory(new PropertyValueFactory<>("Odpowiedz"));
         sredniaColumn.setCellValueFactory(new PropertyValueFactory<>("Srednia"));
 
-        rodzajOceny.addAll("Praca Domowa", "Kartkówka", "Odpowiedź", "Praca Klasowa");
+        rodzajOceny.addAll("Praca domowa", "Kartkówka", "Odpowiedź", "Praca klasowa");
         selectTypOceny.setItems(rodzajOceny);
 
         klasy = nauczyciel.getKlasy();

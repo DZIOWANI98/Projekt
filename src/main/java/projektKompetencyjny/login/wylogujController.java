@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -41,6 +42,7 @@ public class wylogujController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root, 480, 400));
             stage.setTitle("Dziennik elektroniczny");
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/graduate.png")));
             stage.show();
 
             Stage window = (Stage) login_button.getScene().getWindow();

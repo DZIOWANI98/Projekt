@@ -19,7 +19,6 @@ public class clientRootController {
       switch (userStatus.toLowerCase()) {
         case "uczen":
           root.getTabs().add(0, new Tab());
-          //root.getTabs().get(0).setStyle("-fx-background-color: #DEDEDE; -fx-border-color: black;");
           root.getTabs().get(0).setText("Dane");
           root.getTabs().get(0).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_data.fxml")));
 

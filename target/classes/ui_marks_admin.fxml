@@ -124,7 +124,7 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <TableView fx:id="tabela" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefWidth="600.0" style="-fx-background-color: #DEDEDE;">
+                  <TableView fx:id="tabela" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefWidth="600.0" stylesheets="@style/style.css">
                      <columns>
                         <TableColumn fx:id="uczenColumn" editable="false" maxWidth="1000.0" minWidth="120.0" prefWidth="-1.0" sortable="false" text="Uczeń" />
                         <TableColumn fx:id="klasowkiColumn" maxWidth="1000.0" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Praca klasowa" />

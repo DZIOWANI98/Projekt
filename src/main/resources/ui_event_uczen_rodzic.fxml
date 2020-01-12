@@ -31,7 +31,7 @@
                         </Label>
                     </children>
                 </HBox>
-                <TableView fx:id="tabelaMain" editable="true" prefHeight="400.0" prefWidth="600.0">
+                <TableView fx:id="tabelaMain" editable="true" prefHeight="400.0" prefWidth="600.0" stylesheets="@style/style.css">
                     <columns>
                         <TableColumn fx:id="futureEvent" minWidth="500.0" prefWidth="-1.0" sortable="false" text="Przyszłe prace klasowe, kartkówki i prace domowe" />
                         <TableColumn fx:id="data" minWidth="100.0" prefWidth="-1.0" text="Data" />

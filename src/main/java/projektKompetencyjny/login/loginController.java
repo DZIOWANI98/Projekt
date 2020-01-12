@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -107,6 +108,7 @@ public class loginController implements Initializable {
                     } else if (controller.getUserStatus().equals("nauczyciel")) {
                         stage.setTitle("Panel nauczyciela");
                     }
+                    stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/graduate.png")));
                     stage.setScene(new Scene(root));
                     stage.show();
 

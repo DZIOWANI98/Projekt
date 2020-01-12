@@ -55,25 +55,22 @@
                <children>
                   <Label prefHeight="17.0" prefWidth="124.0" text="Klasa" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
-                        <Insets left="5.0" right="5.0" top="5.0"/>
+                        <Insets left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <JFXComboBox fx:id="selectClass" focusColor="#2b285d" maxWidth="1.7976931348623157E308"
-                               onAction="#updateDataClassSelected" GridPane.rowIndex="1">
+                  <JFXComboBox fx:id="selectClass" focusColor="#2b285d" maxWidth="1.7976931348623157E308" onAction="#updateDataClassSelected" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </JFXComboBox>
-                  <Label prefHeight="17.0" prefWidth="124.0" text="Uczeń" GridPane.columnIndex="1"
-                         GridPane.valignment="BOTTOM">
+                  <Label prefHeight="17.0" prefWidth="124.0" text="Uczeń" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
-                        <Insets left="5.0" right="5.0" top="5.0"/>
+                        <Insets left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label prefHeight="17.0" prefWidth="124.0" text="Data" GridPane.columnIndex="4"
-                         GridPane.valignment="BOTTOM">
+                  <Label prefHeight="17.0" prefWidth="124.0" text="Data" GridPane.columnIndex="4" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
-                        <Insets left="5.0" right="5.0" top="5.0"/>
+                        <Insets left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </Label>
                   <JFXTextField fx:id="dataLabel" focusColor="#2b285d" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -116,7 +113,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXDatePicker fx:id="datePicker" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+                  <JFXDatePicker fx:id="datePicker" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                </children>
                <padding>
                   <Insets left="10.0" right="10.0" top="14.0" />
@@ -127,7 +124,7 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <TableView fx:id="tabela" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefWidth="600.0" style="-fx-background-color: #DEDEDE;">
+                  <TableView fx:id="tabela" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefWidth="600.0" stylesheets="@style/style.css">
                      <columns>
                         <TableColumn fx:id="uczenColumn" editable="false" maxWidth="1000.0" minWidth="120.0" prefWidth="-1.0" sortable="false" text="Uczeń" />
                         <TableColumn fx:id="klasowkiColumn" maxWidth="1000.0" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Praca klasowa" />
