@@ -35,6 +35,7 @@
                   <columns>
                       <TableColumn fx:id="futureEvent" minWidth="500.0" prefWidth="-1.0" sortable="false" text="Przyszłe prace klasowe, kartkówki i prace domowe" />
                       <TableColumn fx:id="data" minWidth="100.0" prefWidth="-1.0" text="Data" />
+                  <TableColumn prefWidth="75.0" text="Id" visible="false"/>
                   </columns>
                <VBox.margin>
                   <Insets top="20.0" />

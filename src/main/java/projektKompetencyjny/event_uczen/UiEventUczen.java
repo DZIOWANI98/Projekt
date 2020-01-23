@@ -65,7 +65,7 @@ public class UiEventUczen implements Initializable {
             if (event.getId_klasy().getId_klasy() == klasa) {
                 LocalDate data = event.getData();
                 if (data.isAfter(localDate)) {
-                    eventyObservableList.add(new doTabeliEvent(event.getEvent(), event.getData().toString()));
+                    eventyObservableList.add(new doTabeliEvent(event.getEvent(), event.getData().toString(), event.getId_event()));
                 }
             }
         }

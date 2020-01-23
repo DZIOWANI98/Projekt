@@ -106,6 +106,7 @@
                <columns>
                   <TableColumn fx:id="uwagiKol" prefWidth="460.0" sortable="false" text="Uwaga" />
                   <TableColumn fx:id="dataKol" minWidth="0.0" prefWidth="139.0" text="Data" />
+                  <TableColumn fx:id="idUwagiKol" prefWidth="75.0" text="Id_uwagi" visible="false" />
                </columns>
                <VBox.margin>
                   <Insets />
@@ -117,6 +118,7 @@
                   <ContextMenu>
                      <items>
                          <MenuItem fx:id="deleteMenuItem" mnemonicParsing="false" onAction="#deleteRecordOnAction" text="Usuń" />
+                        <MenuItem fx:id="editMenuItem" mnemonicParsing="false" onAction="#editRecordOnAction" text="Edytuj" />
                      </items>
                   </ContextMenu>
                </contextMenu>

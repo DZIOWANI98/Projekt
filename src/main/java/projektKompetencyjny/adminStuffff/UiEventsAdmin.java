@@ -1,13 +1,20 @@
 package projektKompetencyjny.adminStuffff;
 
 import com.jfoenix.controls.JFXDatePicker;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -18,6 +25,7 @@ import projektKompetencyjny.Klasa;
 import projektKompetencyjny.Nauczyciel;
 import projektKompetencyjny.event_uczen.doTabeliEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
@@ -32,6 +40,9 @@ public class UiEventsAdmin implements Initializable {
     private List<Event> events = new ArrayList<>();
 
     @FXML
+    private MenuItem editMenuItem;
+
+    @FXML
     private TableView<doTabeliEvent> tabelkaEventAdmin;
 
     @FXML
@@ -39,6 +50,9 @@ public class UiEventsAdmin implements Initializable {
 
     @FXML
     private TableColumn<doTabeliEvent, String> data;
+
+    @FXML
+    private TableColumn<doTabeliEvent, Integer> idEvent;
 
     @FXML
     private ComboBox<String> selectClass;
@@ -69,9 +83,9 @@ public class UiEventsAdmin implements Initializable {
 
         futureEvent.setCellValueFactory(new PropertyValueFactory<>("Event"));
         data.setCellValueFactory(new PropertyValueFactory<>("Data"));
-
+        idEvent.setCellValueFactory(new PropertyValueFactory<>("Id"));
         this.deleteMenuItem.disableProperty().bind(this.tabelkaEventAdmin.getSelectionModel().selectedItemProperty().isNull());
-
+        this.editMenuItem.disableProperty().bind(this.tabelkaEventAdmin.getSelectionModel().selectedItemProperty().isNull());
         klasy = nauczyciel.getKlasy();
 
         for (Klasa classa : klasy) {
@@ -104,9 +118,9 @@ public class UiEventsAdmin implements Initializable {
                 LocalDate data = eventt.getData();
                 if (data != null && data.isAfter(localDate)) {
                     //System.out.println("jestem here");
-                    eventyObservableList.add(new doTabeliEvent(eventt.getEvent(), eventt.getData().toString()));
+                    eventyObservableList.add(new doTabeliEvent(eventt.getEvent(), eventt.getData().toString(), eventt.getId_event()));
                 } else if (data == null) {
-                    eventyObservableList.add(new doTabeliEvent(eventt.getEvent(), "Brak daty"));
+                    eventyObservableList.add(new doTabeliEvent(eventt.getEvent(), "Brak daty", eventt.getId_event()));
                 }
             }
         }
@@ -179,9 +193,9 @@ public class UiEventsAdmin implements Initializable {
                 LocalDate data = LocalDate.parse(eventt.getData().toString());
                 if (data != null && data.isAfter(localDate)) {
                     //System.out.println("jestem here");
-                    eventyObservableList.add(new doTabeliEvent(eventt.getEvent(), eventt.getData().toString()));
+                    eventyObservableList.add(new doTabeliEvent(eventt.getEvent(), eventt.getData().toString(), eventt.getId_event()));
                 } else if (data == null) {
-                    eventyObservableList.add(new doTabeliEvent(eventt.getEvent(), "Brak daty"));
+                    eventyObservableList.add(new doTabeliEvent(eventt.getEvent(), "Brak daty", eventt.getId_event()));
                 }
             }
         }
@@ -204,7 +218,7 @@ public class UiEventsAdmin implements Initializable {
             Session session = sessionFactory.openSession();
             Transaction txn = session.beginTransaction();
             Query query = session.createQuery("delete Event where event = :event");
-            query.setParameter("event", selectedForDelete.getEvent());
+            query.setParameter("event", selectedForDelete.getId());
             query.executeUpdate();
             //Commit the transaction
             txn.commit();
@@ -244,6 +258,24 @@ public class UiEventsAdmin implements Initializable {
         tx.commit();
         updateEvent();
         refresh();*/
+    }
+
+    @FXML
+    void editRecordOnAction(ActionEvent event) {
+        Singleton.getInstance().setSelectedForEditEvent(tabelkaEventAdmin.getSelectionModel().getSelectedItem());
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("ui_event_admin_edit.fxml"));
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("ABC");
+            stage.setScene(new Scene(root1));
+            stage.showAndWait();
+            updateEvent();
+            refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -8,9 +8,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -18,11 +24,13 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import projektKompetencyjny.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
 
 import static projektKompetencyjny.setGlobalNauczyciel.getNauczyciel;
+
 
 public class UiUwagiAdmin implements Initializable {
     Nauczyciel nauczyciel = getNauczyciel();
@@ -65,7 +73,13 @@ public class UiUwagiAdmin implements Initializable {
     private TableColumn<doTabeliUwagi, String> dataKol;
 
     @FXML
+    private TableColumn<doTabeliUwagi, Integer> idUwagiKol;
+
+    @FXML
     private MenuItem deleteMenuItem;
+
+    @FXML
+    private MenuItem editMenuItem;
 
     @FXML
     private JFXDatePicker dataPicker;
@@ -77,7 +91,9 @@ public class UiUwagiAdmin implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         uwagiKol.setCellValueFactory(new PropertyValueFactory<>("Uwaga"));
         dataKol.setCellValueFactory(new PropertyValueFactory<>("Data"));
+        idUwagiKol.setCellValueFactory(new PropertyValueFactory<>("Id"));
         this.deleteMenuItem.disableProperty().bind(this.tabelkaUwagiAdmin.getSelectionModel().selectedItemProperty().isNull());
+        this.editMenuItem.disableProperty().bind(this.tabelkaUwagiAdmin.getSelectionModel().selectedItemProperty().isNull());
         klasy = nauczyciel.getKlasy();
 
         for (Klasa klasa : klasy) {
@@ -112,6 +128,7 @@ public class UiUwagiAdmin implements Initializable {
 
     }
 
+    @FXML
     public void addToDatabase(ActionEvent actionEvent) {
         String eventText = eventTextArea.getText();
         LocalDate dataText = null;
@@ -180,9 +197,9 @@ public class UiUwagiAdmin implements Initializable {
                 LocalDate data = uwaga.getData();
                 if (data != null) {
                     //System.out.println("jestem here");
-                    uwagiObservableList.add(new doTabeliUwagi(uwaga.getUwaga(), uwaga.getData().toString()));
+                    uwagiObservableList.add(new doTabeliUwagi(uwaga.getUwaga(), uwaga.getData().toString(), uwaga.getId_uwagi()));
                 } else {
-                    uwagiObservableList.add(new doTabeliUwagi(uwaga.getUwaga(), "Brak daty"));
+                    uwagiObservableList.add(new doTabeliUwagi(uwaga.getUwaga(), "Brak daty", uwaga.getId_uwagi()));
                 }
             }
         }
@@ -204,8 +221,8 @@ public class UiUwagiAdmin implements Initializable {
             SessionFactory sessionFactory = con.buildSessionFactory();
             Session session = sessionFactory.openSession();
             Transaction txn = session.beginTransaction();
-            Query query = session.createQuery("delete Uwaga where uwaga = :uwaga");
-            query.setParameter("uwaga", selectedForDelete.getUwaga());
+            Query query = session.createQuery("delete Uwaga where id_uwagi = :id_uwagi");
+            query.setParameter("id_uwagi", selectedForDelete.getId());
             query.executeUpdate();
             //Commit the transaction
             txn.commit();
@@ -234,13 +251,34 @@ public class UiUwagiAdmin implements Initializable {
                 LocalDate data = uwaga.getData();
                 if (data != null) {
                     //System.out.println("jestem here");
-                    uwagiObservableList.add(new doTabeliUwagi(uwaga.getUwaga(), uwaga.getData().toString()));
+                    uwagiObservableList.add(new doTabeliUwagi(uwaga.getUwaga(), uwaga.getData().toString(), uwaga.getId_uwagi()));
                 } else {
-                    uwagiObservableList.add(new doTabeliUwagi(uwaga.getUwaga(), "Brak daty"));
+                    uwagiObservableList.add(new doTabeliUwagi(uwaga.getUwaga(), "Brak daty", uwaga.getId_uwagi()));
                 }
             }
         }
         tabelkaUwagiAdmin.setItems(uwagiObservableList);
 
     }
+
+    @FXML
+    void editRecordOnAction(ActionEvent event) {
+        Singleton.getInstance().setSelectedForEditUwagi(tabelkaUwagiAdmin.getSelectionModel().getSelectedItem());
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("ui_uwagi_admin_edit.fxml"));
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("ABC");
+            stage.setScene(new Scene(root1));
+            stage.showAndWait();
+            updateUwaga();
+            refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 }
