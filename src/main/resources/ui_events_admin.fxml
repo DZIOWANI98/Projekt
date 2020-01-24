@@ -93,7 +93,7 @@
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </Label>
-                   <JFXDatePicker fx:id="datePicker" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                   <JFXDatePicker fx:id="datePicker" defaultColor="#2b285d" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                </children>
                <VBox.margin>
                   <Insets />
@@ -106,7 +106,7 @@
                <columns>
                   <TableColumn fx:id="futureEvent" prefWidth="460.0" sortable="false" text="Przyszłe prace klasowe, kartkówki i prace domowe" />
                   <TableColumn fx:id="data" minWidth="0.0" prefWidth="139.0" text="Data" />
-                  <TableColumn fx:id="idEvent" prefWidth="75.0" text="Id" visible="false"/>
+                  <TableColumn fx:id="idEvent" prefWidth="75.0" text="Id" visible="false" />
                </columns>
                <VBox.margin>
                   <Insets />
@@ -118,8 +118,7 @@
                   <ContextMenu>
                     <items>
                         <MenuItem fx:id="deleteMenuItem" mnemonicParsing="false" onAction="#deleteRecordOnAction" text="Usuń" />
-                        <MenuItem fx:id="editMenuItem" mnemonicParsing="false" onAction="#editRecordOnAction"
-                                  text="Edytuj"/>
+                        <MenuItem fx:id="editMenuItem" mnemonicParsing="false" onAction="#editRecordOnAction" text="Edytuj" />
                     </items>
                   </ContextMenu>
                </contextMenu>

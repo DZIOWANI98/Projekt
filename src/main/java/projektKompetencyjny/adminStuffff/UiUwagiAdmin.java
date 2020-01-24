@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -133,10 +134,10 @@ public class UiUwagiAdmin implements Initializable {
         String eventText = eventTextArea.getText();
         LocalDate dataText = null;
 
-
-        if (dataPicker.validate()) {
+        if (dataPicker.validate() && dataPicker.getValue() != null) {
             dataText = LocalDate.parse(dataPicker.getValue().toString());
         }
+
         Uczen pickedStudent = null;
         String pickedStudentName = selectUczen.getSelectionModel().getSelectedItem();
         for (Uczen uczen : uczniowie) {
@@ -147,8 +148,8 @@ public class UiUwagiAdmin implements Initializable {
             }
         }
 
-        if (pickedStudent == null || dataPicker == null || eventText.isEmpty()) {
-            errorLabel.setText("Uzupełnij pola");
+        if (pickedStudent == null || eventText.isEmpty() || dataText == null) {
+            errorLabel.setText("Uzupełnij pola.");
         } else {
             errorLabel.setText("");
             Configuration con = new Configuration().configure();
@@ -212,9 +213,9 @@ public class UiUwagiAdmin implements Initializable {
             return;
         }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Deleting event");
-        alert.setContentText("Czy jestes pewien, ze chcesz usunac uwage " + selectedForDelete.getUwaga() + " data: " +
-                selectedForDelete.getData() + " ?");
+        alert.setTitle("Usuwanie uwagi");
+        alert.setContentText("Czy jesteś pewien, że chcesz usunąć uwagę " + selectedForDelete.getUwaga() + " z dnia " +
+                selectedForDelete.getData() + "?");
         Optional<ButtonType> answer = alert.showAndWait();
         if (answer.get() == ButtonType.OK) {
             Configuration con = new Configuration().configure();
@@ -231,7 +232,7 @@ public class UiUwagiAdmin implements Initializable {
         } else {
             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
             alert1.setTitle("Usuwanie uwagi");
-            alert1.setContentText("Usuwanie uwagi anulowane");
+            alert1.setContentText("Usuwanie uwagi anulowane.");
             alert1.showAndWait();
         }
 
@@ -269,7 +270,8 @@ public class UiUwagiAdmin implements Initializable {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("ABC");
+            stage.setTitle("Edycja");
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/graduate.png")));
             stage.setScene(new Scene(root1));
             stage.showAndWait();
             updateUwaga();

@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -218,11 +219,11 @@ public class UiMarksAdmin implements Initializable {
     @FXML
     void addToDatabase(ActionEvent event) {
         LocalDate dataText = null;
+        LocalDate dataPo = LocalDate.parse("2020-02-01");
 
-        if (datePicker.validate()) {
+        if (datePicker.validate() && datePicker.getValue() != null) {
             dataText = LocalDate.parse(datePicker.getValue().toString());
         }
-        LocalDate dataPo = LocalDate.parse("2020-02-01");
 
         int nr_semestru = 0;
         if (dataText != null && dataText.isAfter(dataPo)) {
@@ -237,7 +238,7 @@ public class UiMarksAdmin implements Initializable {
         if (klasaSelected == null || pickedStudent == null || typOceny.isEmpty() || ocena.isEmpty() || dataText == null) {
             errorLabel.setText("Uzupełnij pola.");
         } else if (przedmiotSelected == null) {
-            errorLabel.setText("fatal error");
+            errorLabel.setText("Uzupełnij pola.");
         } else {
             errorLabel.setText("");
             Configuration con = new Configuration().configure();
@@ -573,9 +574,9 @@ public class UiMarksAdmin implements Initializable {
             return;
         }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Deleting event");
-        alert.setContentText("Are you sure you want to delete " + selectedForDelete.getOcena() + " z " + selectedForDelete.getTypOceny() + " z dnia " +
-                selectedForDelete.getData() + " ?");
+        alert.setTitle("Usuwanie oceny");
+        alert.setContentText("Czy jesteś pewien, że chcesz usunąć ocenę " + selectedForDelete.getOcena() + " z " + selectedForDelete.getTypOceny() + " z dnia " +
+                selectedForDelete.getData() + "?");
         Optional<ButtonType> answer = alert.showAndWait();
         if (answer.get() == ButtonType.OK) {
             Configuration con = new Configuration().configure();
@@ -592,8 +593,8 @@ public class UiMarksAdmin implements Initializable {
             refresh();
         } else {
             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-            alert1.setTitle("Deleting event");
-            alert1.setContentText("Deleteing event canceled");
+            alert1.setTitle("Usuwanie oceny");
+            alert1.setContentText("Usuwanie oceny anulowane.");
             alert1.showAndWait();
         }
     }
@@ -665,7 +666,8 @@ public class UiMarksAdmin implements Initializable {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("ABC");
+            stage.setTitle("Edycja");
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/graduate.png")));
             stage.setScene(new Scene(root1));
             pickedUczenBeforeDelete = pickedStudent;
             stage.showAndWait();

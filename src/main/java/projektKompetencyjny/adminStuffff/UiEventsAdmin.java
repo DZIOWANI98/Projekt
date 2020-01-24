@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -129,15 +130,13 @@ public class UiEventsAdmin implements Initializable {
 
     @FXML
     void addToDatabase(ActionEvent event) {
-
         String eventText = eventTextArea.getText();
         LocalDate dataText = null;
+        Klasa klassa = null;
 
-        if (datePicker.validate()) {
+        if (datePicker.validate() && datePicker.getValue() != null) {
             dataText = LocalDate.parse(datePicker.getValue().toString());
         }
-
-        Klasa klassa = null;
 
         for (Klasa klass : klasy) {
             if (klass.getNazwa_klasy().equals(selectClass.getSelectionModel().getSelectedItem())) {
@@ -145,7 +144,7 @@ public class UiEventsAdmin implements Initializable {
             }
         }
 
-        if (klassa == null || eventText.isEmpty() || datePicker == null) {
+        if (klassa == null || eventText.isEmpty() || dataText == null) {
             errorLabel.setText("Uzupełnij pola.");
         } else {
             errorLabel.setText("");
@@ -209,8 +208,8 @@ public class UiEventsAdmin implements Initializable {
             return;
         }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Deleting event");
-        alert.setContentText("Are you sure you want to delete " + selectedForDelete.getEvent() + " ?");
+        alert.setTitle("Usuwanie wydarzenia");
+        alert.setContentText("Czy jesteś pewien, że chcesz usunąć wydarzenie " + selectedForDelete.getEvent() + "?");
         Optional<ButtonType> answer = alert.showAndWait();
         if (answer.get() == ButtonType.OK) {
             Configuration con = new Configuration().configure();
@@ -226,8 +225,8 @@ public class UiEventsAdmin implements Initializable {
             refresh();
         } else {
             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-            alert1.setTitle("Deleting event");
-            alert1.setContentText("Deleteing event canceled");
+            alert1.setTitle("Usuwanie wydarzenia");
+            alert1.setContentText("Usuwanie wydarzenia anulowane.");
             alert1.showAndWait();
         }
 
@@ -268,7 +267,8 @@ public class UiEventsAdmin implements Initializable {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("ABC");
+            stage.setTitle("Edycja");
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/graduate.png")));
             stage.setScene(new Scene(root1));
             stage.showAndWait();
             updateEvent();
