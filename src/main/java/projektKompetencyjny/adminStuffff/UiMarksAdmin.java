@@ -8,18 +8,26 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import projektKompetencyjny.*;
+import projektKompetencyjny.event_uczen.doTabeliEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
@@ -51,6 +59,12 @@ public class UiMarksAdmin implements Initializable {
     private double srednia;
     private int SUMAWAG = 0;
 
+    private Uczen pickedUczenBeforeDelete;
+
+    private boolean layout1 = true;
+
+    private doTabeliMarksAdminLayout2 selectedForEdit;
+
     @FXML
     private JFXComboBox<String> selectClass;
 
@@ -76,30 +90,82 @@ public class UiMarksAdmin implements Initializable {
     private JFXTextField ocenaLabel;
 
     @FXML
-    private TableView<doTabeliMarksAdmin> tabela;
+    private TableView<doTabeliMarksAdminLayout1> tabela;
 
     @FXML
-    private TableColumn<doTabeliMarksAdmin, String> uczenColumn;
+    private TableColumn<doTabeliMarksAdminLayout1, String> uczenColumn;
 
     @FXML
-    private TableColumn<doTabeliMarksAdmin, String> klasowkiColumn;
+    private TableColumn<doTabeliMarksAdminLayout1, String> klasowkiColumn;
 
     @FXML
-    private TableColumn<doTabeliMarksAdmin, String> pracedomoweColumn;
+    private TableColumn<doTabeliMarksAdminLayout1, String> pracedomoweColumn;
 
     @FXML
-    private TableColumn<doTabeliMarksAdmin, String> kartkowkiColumn;
+    private TableColumn<doTabeliMarksAdminLayout1, String> kartkowkiColumn;
 
     @FXML
-    private TableColumn<doTabeliMarksAdmin, String> odpowiedziColumn;
+    private TableColumn<doTabeliMarksAdminLayout1, String> odpowiedziColumn;
 
     @FXML
-    private TableColumn<doTabeliMarksAdmin, Double> sredniaColumn;
+    private TableColumn<doTabeliMarksAdminLayout1, Double> sredniaColumn;
+
+    @FXML
+    private JFXButton changeButton;
+
+    @FXML
+    private JFXComboBox<String> selectClass2;
+
+    @FXML
+    private Label errorLabel1;
+
+    @FXML
+    private JFXComboBox<String> selectUczen2;
+
+    @FXML
+    private JFXComboBox<String> selectPrzedmiot2;
+
+    @FXML
+    private GridPane layoutDodawanie1;
+
+    @FXML
+    private VBox layoutDodawanie2;
+
+    @FXML
+    private GridPane layoutEdycja1;
+
+    @FXML
+    private VBox layoutEdycja2;
+
+    @FXML
+    private TableView<doTabeliMarksAdminLayout2> tabela2;
+
+    @FXML
+    private TableColumn<doTabeliMarksAdminLayout2, String> dataColumn2;
+
+    @FXML
+    private TableColumn<doTabeliMarksAdminLayout2, Integer> ocenaColumn2;
+
+    @FXML
+    private TableColumn<doTabeliMarksAdminLayout2, String> typOcenyColumn2;
+
+    @FXML
+    private TableColumn<doTabeliMarksAdminLayout2, Integer> idColumnEditLayout;
+
+    @FXML
+    private MenuItem deleteMenuItem;
+
+    @FXML
+    private MenuItem editMenuItem;
+
 
     private ObservableList<String> selectClassObservableList = FXCollections.observableArrayList();
-    private ObservableList<String> listOfStudents = FXCollections.observableArrayList();
+    private ObservableList<String> listOfStudentsLayout1 = FXCollections.observableArrayList();
+    private ObservableList<String> listOfStudentsLayout2 = FXCollections.observableArrayList();
     private ObservableList<String> rodzajOceny = FXCollections.observableArrayList();
-    private ObservableList<doTabeliMarksAdmin> studentMarks = FXCollections.observableArrayList();
+    private ObservableList<doTabeliMarksAdminLayout1> studentMarksLayout1 = FXCollections.observableArrayList();
+    private ObservableList<doTabeliMarksAdminLayout2> studentMarksLayout2 = FXCollections.observableArrayList();
+    private ObservableList<String> przedmiot = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,6 +176,15 @@ public class UiMarksAdmin implements Initializable {
         odpowiedziColumn.setCellValueFactory(new PropertyValueFactory<>("Odpowiedz"));
         sredniaColumn.setCellValueFactory(new PropertyValueFactory<>("Srednia"));
 
+        dataColumn2.setCellValueFactory(new PropertyValueFactory<>("Data"));
+        ocenaColumn2.setCellValueFactory(new PropertyValueFactory<>("Ocena"));
+        typOcenyColumn2.setCellValueFactory(new PropertyValueFactory<>("TypOceny"));
+        idColumnEditLayout.setCellValueFactory(new PropertyValueFactory<>("Id"));
+
+        this.deleteMenuItem.disableProperty().bind(this.tabela2.getSelectionModel().selectedItemProperty().isNull());
+        this.editMenuItem.disableProperty().bind(this.tabela2.getSelectionModel().selectedItemProperty().isNull());
+
+
         rodzajOceny.addAll("Praca domowa", "Kartkówka", "Odpowiedź", "Praca klasowa");
         selectTypOceny.setItems(rodzajOceny);
 
@@ -118,6 +193,7 @@ public class UiMarksAdmin implements Initializable {
             selectClassObservableList.add(classa.getNazwa_klasy());
         }
         selectClass.setItems(selectClassObservableList);
+        selectClass2.setItems(selectClassObservableList);
 
         Configuration con = new Configuration().configure();
         SessionFactory sessionFactory = con.buildSessionFactory();
@@ -131,6 +207,8 @@ public class UiMarksAdmin implements Initializable {
             przedmiotSelected = przedmiot;
         }
         //Commit the transaction
+        przedmiot.add(przedmiotSelected.getNazwa_przedmiotu());
+        selectPrzedmiot2.setItems(przedmiot);
         txn.commit();
 
 
@@ -179,16 +257,16 @@ public class UiMarksAdmin implements Initializable {
             session.save(ocenaToSave);
             //Commit the transaction
             tx.commit();
-            refresh();
+            refreshLayout1();
         }
 
 
     }
 
-    private void refresh() {
-        listOfStudents.clear();
+    private void refreshLayout1() {
+        listOfStudentsLayout1.clear();
         uczniowie.clear();
-        studentMarks.clear();
+        studentMarksLayout1.clear();
         tabela.getItems().clear();
         String klasa = selectClass.getSelectionModel().getSelectedItem();
         for (Klasa klass : klasy) {
@@ -214,9 +292,9 @@ public class UiMarksAdmin implements Initializable {
             txn.commit();
         }
         for (Uczen uczen : uczniowie) {
-            listOfStudents.add(uczen.getName() + " " + uczen.getNazwisko());
+            listOfStudentsLayout1.add(uczen.getName() + " " + uczen.getNazwisko());
         }
-        selectUczen.setItems(listOfStudents);
+        selectUczen.setItems(listOfStudentsLayout1);
 
         for (Uczen uczen : uczniowie) {
             double suma = 0;
@@ -277,19 +355,19 @@ public class UiMarksAdmin implements Initializable {
             srednia *= 100;
             srednia = Math.round(srednia);
             srednia /= 100;
-            studentMarks.add(new doTabeliMarksAdmin(uczen.getName() + " " + uczen.getNazwisko(),
+            studentMarksLayout1.add(new doTabeliMarksAdminLayout1(uczen.getName() + " " + uczen.getNazwisko(),
                     oceny_z_pracyKlasowej.toString(), oceny_z_pracDomowych.toString(), oceny_z_kartkowki.toString(),
                     oceny_z_odpowiedzi.toString(), srednia));
             //add your data to the table here.
         }
-        tabela.setItems(studentMarks);
+        tabela.setItems(studentMarksLayout1);
     }
 
     @FXML
     void updateDataClassSelected(ActionEvent event) {
-        listOfStudents.clear();
+        listOfStudentsLayout1.clear();
         uczniowie.clear();
-        studentMarks.clear();
+        studentMarksLayout1.clear();
         tabela.getItems().clear();
         String klasa = selectClass.getSelectionModel().getSelectedItem();
         for (Klasa klass : klasy) {
@@ -315,9 +393,9 @@ public class UiMarksAdmin implements Initializable {
             txn.commit();
         }
         for (Uczen uczen : uczniowie) {
-            listOfStudents.add(uczen.getName() + " " + uczen.getNazwisko());
+            listOfStudentsLayout1.add(uczen.getName() + " " + uczen.getNazwisko());
         }
-        selectUczen.setItems(listOfStudents);
+        selectUczen.setItems(listOfStudentsLayout1);
 
         for (Uczen uczen : uczniowie) {
             double suma = 0;
@@ -378,12 +456,12 @@ public class UiMarksAdmin implements Initializable {
             srednia *= 100;
             srednia = Math.round(srednia);
             srednia /= 100;
-            studentMarks.add(new doTabeliMarksAdmin(uczen.getName() + " " + uczen.getNazwisko(),
+            studentMarksLayout1.add(new doTabeliMarksAdminLayout1(uczen.getName() + " " + uczen.getNazwisko(),
                     oceny_z_pracyKlasowej.toString(), oceny_z_pracDomowych.toString(), oceny_z_kartkowki.toString(),
                     oceny_z_odpowiedzi.toString(), srednia));
             //add your data to the table here.
         }
-        tabela.setItems(studentMarks);
+        tabela.setItems(studentMarksLayout1);
 
     }
 
@@ -400,6 +478,201 @@ public class UiMarksAdmin implements Initializable {
                 pickedStudent = uczen;
                 break;
             }
+        }
+
+    }
+
+    @FXML
+    public void changeLayout(ActionEvent actionEvent) {
+        if (layout1) {
+            layoutDodawanie1.setVisible(false);
+            layoutDodawanie2.setVisible(false);
+            layoutEdycja1.setVisible(true);
+            layoutEdycja2.setVisible(true);
+            layout1 = false;
+        } else {
+            layoutDodawanie1.setVisible(true);
+            layoutDodawanie2.setVisible(true);
+            layoutEdycja1.setVisible(false);
+            layoutEdycja2.setVisible(false);
+            layout1 = true;
+        }
+    }
+
+    @FXML
+    public void updateDataClassSelected2(ActionEvent actionEvent) {
+        listOfStudentsLayout2.clear();
+        uczniowie.clear();
+        studentMarksLayout2.clear();
+        tabela.getItems().clear();
+        tabela2.getItems().clear();
+        String klasa = selectClass2.getSelectionModel().getSelectedItem();
+        for (Klasa klass : klasy) {
+            if (klass.getNazwa_klasy().equals(klasa)) {
+                klasaSelected = klass;
+            }
+        }
+        if (klasaSelected == null) {
+            errorLabel1.setText("Uzupelnij pola");
+        } else {
+            errorLabel1.setText("");
+            Configuration con = new Configuration().configure();
+            SessionFactory sessionFactory = con.buildSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction txn = session.beginTransaction();
+            Query query = session.createQuery("FROM Uczen U WHERE U.idKlasy = :idklasy");
+            query.setParameter("idklasy", klasaSelected);
+            List result = query.list();
+            for (Object res : result) {
+                uczniowie.add((Uczen) res);
+            }
+            //Commit the transaction
+            txn.commit();
+        }
+        for (Uczen uczen : uczniowie) {
+            listOfStudentsLayout2.add(uczen.getName() + " " + uczen.getNazwisko());
+        }
+        selectUczen2.setItems(listOfStudentsLayout2);
+
+    }
+
+    @FXML
+    public void updateDataStudentSelected2(ActionEvent actionEvent) {
+        tabela2.getItems().clear();
+        if (klasaSelected == null) {
+            errorLabel1.setText("Wybierz klasę !");
+            return;
+        }
+        String pickedStudentName = selectUczen2.getSelectionModel().getSelectedItem();
+        for (Uczen uczen : uczniowie) {
+            String student = uczen.getName() + " " + uczen.getNazwisko();
+            if (student.equals(pickedStudentName)) {
+                pickedStudent = uczen;
+                break;
+            }
+        }
+        List<Oceny> ocenyPickedStudent = pickedStudent.getOceny();
+
+        for (Oceny ocena : ocenyPickedStudent) {
+            if (ocena.getId_przedmiotu().getId_przedmiotu() == przedmiotSelected.getId_przedmiotu()) {
+                studentMarksLayout2.add(new doTabeliMarksAdminLayout2(ocena.getData().toString(), ocena.getOcena(), ocena.getRodzaj_oceny(),
+                        ocena.getId_oceny()));
+            }
+        }
+    }
+
+    @FXML
+    public void updateDataPrzedmiotSelected2(ActionEvent actionEvent) {
+        tabela2.setItems(studentMarksLayout2);
+    }
+
+    @FXML
+    void deleteRecordOnAction(ActionEvent event) {
+        doTabeliMarksAdminLayout2 selectedForDelete = tabela2.getSelectionModel().getSelectedItem();
+        if (selectedForDelete == null) {
+            return;
+        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Deleting event");
+        alert.setContentText("Are you sure you want to delete " + selectedForDelete.getOcena() + " z " + selectedForDelete.getTypOceny() + " z dnia " +
+                selectedForDelete.getData() + " ?");
+        Optional<ButtonType> answer = alert.showAndWait();
+        if (answer.get() == ButtonType.OK) {
+            Configuration con = new Configuration().configure();
+            SessionFactory sessionFactory = con.buildSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction txn = session.beginTransaction();
+            Query query = session.createQuery("delete Oceny where id_oceny = :id_oceny");
+            query.setParameter("id_oceny", selectedForDelete.getId());
+            query.executeUpdate();
+            //Commit the transaction
+            txn.commit();
+            pickedUczenBeforeDelete = pickedStudent;
+            updateOceny();
+            refresh();
+        } else {
+            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+            alert1.setTitle("Deleting event");
+            alert1.setContentText("Deleteing event canceled");
+            alert1.showAndWait();
+        }
+    }
+
+    void refresh() {
+        tabela2.getItems().clear();
+        studentMarksLayout2.clear();
+        if (klasaSelected == null) {
+            errorLabel1.setText("Wybierz klasę !");
+            return;
+        }
+        Configuration con = new Configuration().configure();
+        SessionFactory sessionFactory = con.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction txn = session.beginTransaction();
+        Uczen pickedHereUczen = (Uczen) session.load(Uczen.class, pickedUczenBeforeDelete.getId_Ucznia());
+        txn.commit();
+        List<Oceny> ocenyPickedStudent = pickedHereUczen.getOceny();
+
+        for (Oceny ocena : ocenyPickedStudent) {
+            if (ocena.getId_przedmiotu().getId_przedmiotu() == przedmiotSelected.getId_przedmiotu()) {
+                studentMarksLayout2.add(new doTabeliMarksAdminLayout2(ocena.getData().toString(), ocena.getOcena(), ocena.getRodzaj_oceny(),
+                        ocena.getId_oceny()));
+            }
+        }
+        tabela2.setItems(studentMarksLayout2);
+    }
+
+    private void updateOceny() {
+        listOfStudentsLayout2.clear();
+        uczniowie.clear();
+        studentMarksLayout2.clear();
+        tabela.getItems().clear();
+        tabela2.getItems().clear();
+        String klasa = selectClass2.getSelectionModel().getSelectedItem();
+        for (Klasa klass : klasy) {
+            if (klass.getNazwa_klasy().equals(klasa)) {
+                klasaSelected = klass;
+            }
+        }
+        if (klasaSelected == null) {
+            errorLabel1.setText("Uzupelnij pola");
+        } else {
+            errorLabel1.setText("");
+            Configuration con = new Configuration().configure();
+            SessionFactory sessionFactory = con.buildSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction txn = session.beginTransaction();
+            Query query = session.createQuery("FROM Uczen U WHERE U.idKlasy = :idklasy");
+            query.setParameter("idklasy", klasaSelected);
+            List result = query.list();
+            for (Object res : result) {
+                uczniowie.add((Uczen) res);
+            }
+            //Commit the transaction
+            txn.commit();
+        }
+        for (Uczen uczen : uczniowie) {
+            listOfStudentsLayout2.add(uczen.getName() + " " + uczen.getNazwisko());
+        }
+        selectUczen2.setItems(listOfStudentsLayout2);
+    }
+
+    @FXML
+    void editRecordOnAction(ActionEvent event) {
+        Singleton.getInstance().setSelectedForEditMarksAdmin(tabela2.getSelectionModel().getSelectedItem());
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("ui_marks_admin_edit.fxml"));
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("ABC");
+            stage.setScene(new Scene(root1));
+            pickedUczenBeforeDelete = pickedStudent;
+            stage.showAndWait();
+            updateOceny();
+            refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }

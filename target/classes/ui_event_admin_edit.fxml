@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="273.0" prefWidth="477.0"
+            xmlns="http://javafx.com/javafx/8.0.141" fx:controller="projektKompetencyjny.adminStuffff.UiEventAdminEdit">
+    <children>
+        <Label layoutX="14.0" layoutY="59.0" text="Wydarzenie"/>
+        <TextField fx:id="eventTextEdit" layoutX="85.0" layoutY="55.0" prefHeight="25.0" prefWidth="376.0"/>
+        <JFXDatePicker fx:id="dateEventEdit" layoutX="85.0" layoutY="148.0"/>
+        <Label layoutX="14.0" layoutY="152.0" text="Data"/>
+        <Button fx:id="zatwierdzButton" layoutX="273.0" layoutY="224.0" mnemonicParsing="false"
+                onAction="#zatwierdzButtonClicked" text="Zatwierdź"/>
+        <Button fx:id="anulujButton" layoutX="396.0" layoutY="224.0" mnemonicParsing="false"
+                onAction="#anulujButtonClicked" text="Anuluj"/>
+    </children>
+</AnchorPane>

@@ -3,7 +3,7 @@ package projektKompetencyjny.adminStuffff;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class doTabeliMarksAdmin {
+public class doTabeliMarksAdminLayout1 {
 
     private SimpleStringProperty uczen;
     private SimpleStringProperty klasowka;
@@ -12,7 +12,7 @@ public class doTabeliMarksAdmin {
     private SimpleStringProperty odpowiedz;
     private SimpleDoubleProperty srednia;
 
-    public doTabeliMarksAdmin(String uczen, String klasowka, String praceDomowe, String kartkowka, String odpowiedz, Double srednia) {
+    public doTabeliMarksAdminLayout1(String uczen, String klasowka, String praceDomowe, String kartkowka, String odpowiedz, Double srednia) {
         this.uczen = new SimpleStringProperty(uczen);
         this.klasowka = new SimpleStringProperty(klasowka);
         this.praceDomowe = new SimpleStringProperty(praceDomowe);
