@@ -187,33 +187,47 @@
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
                   <VBox fx:id="layoutDodawanie2" maxHeight="1.7976931348623157E308" prefWidth="600.0">
-                     <children>
-                        <TableView fx:id="tabela" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefWidth="600.0" stylesheets="@style/style.css">
-                           <columns>
-                              <TableColumn fx:id="uczenColumn" editable="false" maxWidth="1000.0" minWidth="120.0" prefWidth="-1.0" sortable="false" text="Uczeń" />
-                              <TableColumn fx:id="klasowkiColumn" maxWidth="1000.0" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Praca klasowa" />
-                              <TableColumn fx:id="pracedomoweColumn" maxWidth="1000.0" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Praca domowa" />
-                              <TableColumn fx:id="kartkowkiColumn" maxWidth="1000.0" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Kartkówka" />
-                              <TableColumn fx:id="odpowiedziColumn" maxWidth="1000.0" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Odpowiedź" />
-                              <TableColumn fx:id="sredniaColumn" editable="false" maxWidth="1000.0" minWidth="50.0" prefWidth="-1.0" sortable="false" text="Średnia" />
-                           </columns>
+                      <children>
+                          <TableView fx:id="tabela" editable="true" maxHeight="1.7976931348623157E308"
+                                     maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefWidth="600.0"
+                                     stylesheets="@style/style.css">
+                              <columns>
+                                  <TableColumn fx:id="uczenColumn" editable="false" maxWidth="1000.0" minWidth="120.0"
+                                               prefWidth="-1.0" sortable="false" text="Uczeń"/>
+                                  <TableColumn fx:id="klasowkiColumn" maxWidth="1000.0" minWidth="100.0"
+                                               prefWidth="-1.0" sortable="false" text="Praca klasowa"/>
+                                  <TableColumn fx:id="pracedomoweColumn" maxWidth="1000.0" minWidth="100.0"
+                                               prefWidth="-1.0" sortable="false" text="Praca domowa"/>
+                                  <TableColumn fx:id="kartkowkiColumn" maxWidth="1000.0" minWidth="100.0"
+                                               prefWidth="-1.0" sortable="false" text="Kartkówka"/>
+                                  <TableColumn fx:id="odpowiedziColumn" maxWidth="1000.0" minWidth="100.0"
+                                               prefWidth="-1.0" sortable="false" text="Odpowiedź"/>
+                                  <TableColumn fx:id="sredniaColumn" editable="false" maxWidth="1000.0" minWidth="50.0"
+                                               prefWidth="-1.0" sortable="false" text="Średnia"/>
+                              </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
                      </children>
                   </VBox>
-                  <VBox fx:id="layoutEdycja2" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefWidth="600.0" visible="false">
-                     <children>
-                        <TableView fx:id="tabela2" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefWidth="600.0" stylesheets="@style/style.css">
-                           <columns>
-                              <TableColumn fx:id="dataColumn2" editable="false" maxWidth="1000.0" minWidth="120.0" prefWidth="-1.0" sortable="false" text="Data" />
-                              <TableColumn fx:id="ocenaColumn2" maxWidth="1000.0" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Ocena" />
-                              <TableColumn fx:id="typOcenyColumn2" maxWidth="1000.0" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Typ oceny" />
-                              <TableColumn fx:id="idColumnEditLayout" prefWidth="75.0" text="Id" visible="false" />
-                           </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                   <VBox fx:id="layoutEdycja2" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308"
+                         prefWidth="600.0" visible="false">
+                       <children>
+                           <TableView fx:id="tabela2" editable="true" maxHeight="1.7976931348623157E308"
+                                      maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT"
+                                      prefWidth="600.0" stylesheets="@style/style.css">
+                               <columns>
+                                   <TableColumn fx:id="dataColumn2" editable="false" maxWidth="1000.0" minWidth="120.0"
+                                                prefWidth="-1.0" sortable="false" text="Data"/>
+                                   <TableColumn fx:id="ocenaColumn2" maxWidth="1000.0" minWidth="100.0" prefWidth="-1.0"
+                                                sortable="false" text="Ocena"/>
+                                   <TableColumn fx:id="typOcenyColumn2" maxWidth="1000.0" minWidth="100.0"
+                                                prefWidth="-1.0" sortable="false" text="Typ oceny"/>
+                                   <TableColumn fx:id="idColumnEditLayout" prefWidth="75.0" text="Id" visible="false"/>
+                               </columns>
+                               <columnResizePolicy>
+                                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                            </columnResizePolicy>
                            <contextMenu>
                               <ContextMenu>

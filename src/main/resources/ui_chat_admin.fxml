@@ -114,7 +114,7 @@
                                      text="Autor"/>
                         <TableColumn fx:id="wiadomosc" minWidth="0.0" prefWidth="222.0" sortable="false"
                                      text="Wiadomość"/>
-                        <TableColumn fx:id="idWiadomosci" prefWidth="75.0" text="IdWiadomosci" visible="false"/>
+                        <TableColumn fx:id="id" prefWidth="75.0" text="IdWiadomosci" visible="false"/>
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>

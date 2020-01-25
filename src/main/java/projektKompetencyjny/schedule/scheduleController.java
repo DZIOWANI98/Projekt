@@ -11,6 +11,8 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -98,7 +100,17 @@ public class scheduleController implements Initializable {
           break;
       }
       if (col != 0 && row != 0 && lekcja.getId_klasy().getId_klasy() == uczen.getIdKlasy().getId_klasy()) {
-        schedule.add(new Label(lekcja.getId_przedmiotu().getNazwa_przedmiotu() + "\n" + lekcja.getId_nauczyciela().getNazwisko() + "\n" + lekcja.getNr_sali()), col, row);
+        TextFlow flow = new TextFlow();
+
+        Text l1 = new Text(lekcja.getId_przedmiotu().getNazwa_przedmiotu() + "\n");
+        l1.setStyle("-fx-font-weight: bold; -fx-font-size: 11px; -fx-fill: #2b285d;");
+
+        Text l2 = new Text(lekcja.getId_nauczyciela().getNazwisko() + "\nsala " + lekcja.getNr_sali());
+        l2.setStyle("-fx-font-size: 10px; -fx-fill: #2b285d;");
+
+        flow.setStyle("-fx-padding: 5px; -fx-border-insets: 5px; -fx-background-insets: 5px; -fx-text-fill: #2b285d;");
+        flow.getChildren().addAll(l1, l2);
+        schedule.add(flow, col, row);
       }
     }
     tx.commit();

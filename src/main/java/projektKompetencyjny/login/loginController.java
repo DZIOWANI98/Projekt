@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -110,6 +111,11 @@ public class loginController implements Initializable {
                     }
                     stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/graduate.png")));
                     stage.setScene(new Scene(root));
+                    stage.setOnCloseRequest((WindowEvent eventtClosing) ->
+                    {
+                        System.out.println("CLOSING");
+                        System.exit(0);
+                    });
                     stage.show();
 
                     Stage window = (Stage) login_button.getScene().getWindow();

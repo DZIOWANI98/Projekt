@@ -75,7 +75,7 @@ public class UiChatAdmin implements Initializable {
     private TableColumn<doTabeliChatAdmin, String> wiadomosc;
 
     @FXML
-    private TableColumn<doTabeliChatAdmin, Integer> idWiadomosci;
+    private TableColumn<doTabeliChatAdmin, Integer> id;
 
     @FXML
     private JFXTextField tekstWiadomosci;
@@ -91,11 +91,11 @@ public class UiChatAdmin implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        data.setCellValueFactory(new PropertyValueFactory<>("data"));
-        godzina.setCellValueFactory(new PropertyValueFactory<>("godzina"));
-        autor.setCellValueFactory(new PropertyValueFactory<>("autor"));
-        wiadomosc.setCellValueFactory(new PropertyValueFactory<>("wiadomosc"));
-        idWiadomosci.setCellValueFactory(new PropertyValueFactory<>("idWiadomosci"));
+        data.setCellValueFactory(new PropertyValueFactory<>("Data"));
+        godzina.setCellValueFactory(new PropertyValueFactory<>("Godzina"));
+        autor.setCellValueFactory(new PropertyValueFactory<>("Autor"));
+        wiadomosc.setCellValueFactory(new PropertyValueFactory<>("Wiadomosc"));
+        id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 
         klasy = nauczyciel.getKlasy();
 

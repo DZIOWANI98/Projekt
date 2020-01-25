@@ -10,14 +10,14 @@ public class doTabeliChatAdmin {
     private SimpleStringProperty godzina;
     private SimpleStringProperty autor;
     private SimpleStringProperty wiadomosc;
-    private SimpleIntegerProperty idWiadomosci;
+    private SimpleIntegerProperty id;
 
-    public doTabeliChatAdmin(String data, String godzina, String autor, String wiadomosc, Integer idWiadomosci) {
+    public doTabeliChatAdmin(String data, String godzina, String autor, String wiadomosc, Integer id) {
         this.data = new SimpleStringProperty(data);
         this.godzina = new SimpleStringProperty(godzina);
         this.autor = new SimpleStringProperty(autor);
         this.wiadomosc = new SimpleStringProperty(wiadomosc);
-        this.idWiadomosci = new SimpleIntegerProperty(idWiadomosci);
+        this.id = new SimpleIntegerProperty(id);
     }
 
     public void setData(String data) {
@@ -37,7 +37,7 @@ public class doTabeliChatAdmin {
     }
 
     public void setIdWiadomosci(int idWiadomosci) {
-        this.idWiadomosci.set(idWiadomosci);
+        this.id.set(idWiadomosci);
     }
 
     @Override
@@ -47,7 +47,47 @@ public class doTabeliChatAdmin {
                 ", godzina=" + godzina +
                 ", autor=" + autor +
                 ", wiadomosc=" + wiadomosc +
-                ", idWiadomosci=" + idWiadomosci +
+                ", idWiadomosci=" + id +
                 '}';
+    }
+
+    public String getData() {
+        return data.get();
+    }
+
+    public SimpleStringProperty dataProperty() {
+        return data;
+    }
+
+    public String getGodzina() {
+        return godzina.get();
+    }
+
+    public SimpleStringProperty godzinaProperty() {
+        return godzina;
+    }
+
+    public String getAutor() {
+        return autor.get();
+    }
+
+    public SimpleStringProperty autorProperty() {
+        return autor;
+    }
+
+    public String getWiadomosc() {
+        return wiadomosc.get();
+    }
+
+    public SimpleStringProperty wiadomoscProperty() {
+        return wiadomosc;
+    }
+
+    public int getId() {
+        return id.get();
+    }
+
+    public SimpleIntegerProperty idProperty() {
+        return id;
     }
 }
