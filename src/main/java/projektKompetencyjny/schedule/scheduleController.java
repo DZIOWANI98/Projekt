@@ -1,19 +1,29 @@
 package projektKompetencyjny.schedule;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import projektKompetencyjny.Lekcja;
+import projektKompetencyjny.Main;
 import projektKompetencyjny.Uczen;
+import projektKompetencyjny.clientRootController;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -32,20 +42,6 @@ public class scheduleController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-//    schedule.getChildren().forEach(cell -> {
-//      cell.setOnMouseClicked(event -> {
-//          System.out.println(GridPane.getColumnIndex(cell) + " " + GridPane.getRowIndex(cell));
-//          Label text = new Label("text");
-//          schedule.add(text, GridPane.getColumnIndex(cell), GridPane.getRowIndex(cell));
-//      });
-//    });
-
-//    for (int i = 1; i < 7; i++) {
-//      for (int j = 1; j < 6; j++) {
-//        Pane pane = new Pane();
-//        schedule.add(pane, i, j);
-//      }
-//    }
 
     schedule.paddingProperty().set(new Insets(5));
 
@@ -107,56 +103,31 @@ public class scheduleController implements Initializable {
     }
     tx.commit();
 
-//    schedule.getChildren().forEach(cell -> {
-//      cell.setOnMouseClicked(event -> {
-//
-////        GridPane.getColumnIndex(cell), GridPane.getRowIndex(cell)
-//
-//
-//        int row = GridPane.getRowIndex(cell);
-//        int col = GridPane.getColumnIndex(cell);
-//
-//
-//
-//
-////        System.out.println(GridPane.getColumnIndex(cell) + " " + GridPane.getRowIndex(cell));
-////        Label text = new Label("text");
-////        schedule.add(text, GridPane.getColumnIndex(cell), GridPane.getRowIndex(cell));
-//      });
-//    });
-
-
-
-
-//    schedule.getChildren().forEach(cell -> {
-//      cell.setOnMouseClicked(event -> {
-//        Integer col = GridPane.getColumnIndex(cell);
-//        Integer row = GridPane.getRowIndex(cell);
-//
-//        try {
-//          FXMLLoader loader = new FXMLLoader();
-//          loader.setLocation(Main.class.getResource("/addNewLesson.fxml"));
-//          AnchorPane root = loader.load();
-//
-//          Stage stage = new Stage();
-//          stage.setTitle("Add lesson");
-//          stage.setScene(new Scene(root));
-//          stage.show();
-//        }
-//        catch (Exception e){
-//          e.printStackTrace();
-//        }
-//
-//        if(col != null && row != null) {
-//          System.out.println(col + " " + row);
-//          Label lesson = new Label("Nazwa przedmiotu\nProwadzacy\nNumer sali");
-//          schedule.add(lesson, col, row);
-//        }
-//      });
-//    });
-
-
-
+    schedule.getChildren().forEach(cell -> {
+      cell.setOnMouseClicked(event -> {
+        try {
+          FXMLLoader loader = new FXMLLoader();
+          loader.setLocation(Main.class.getClassLoader().getResource("ui_lesson_properties.fxml"));
+          GridPane root = loader.load();
+          UiLessonProperties controller = loader.getController();
+          for (Object o : lekcje) {
+            Lekcja lekcja = (Lekcja) o;
+            if (lekcja.getId_godziny().getId_dnia().getId_dnia() == GridPane.getRowIndex(cell) && lekcja.getId_godziny().getId_godziny() == GridPane.getColumnIndex(cell)) {
+              controller.setLekcja(lekcja);
+              controller.generateUserInteface();
+              Stage stage = new Stage();
+              stage.initModality(Modality.APPLICATION_MODAL);
+              stage.initStyle(StageStyle.UNDECORATED);
+              stage.setScene(new Scene(root));
+              stage.show();
+              break;
+            }
+          }
+        }
+        catch (Exception e) {
+          e.printStackTrace();
+        }
+      });
+    });
   }
-
 }
