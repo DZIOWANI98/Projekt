@@ -1,20 +1,24 @@
 package projektKompetencyjny.schedule;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import projektKompetencyjny.Main;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import projektKompetencyjny.Lekcja;
+import projektKompetencyjny.Uczen;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import static projektKompetencyjny.setGlobalUczen.getUczen;
 
 public class scheduleController implements Initializable {
 
@@ -23,6 +27,8 @@ public class scheduleController implements Initializable {
 
   @FXML private TextField lesson_data;
   @FXML private Button add_lesson_button;
+
+  Uczen uczen = getUczen();
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -34,40 +40,120 @@ public class scheduleController implements Initializable {
 //      });
 //    });
 
-    for (int i = 1; i < 7; i++) {
-      for (int j = 1; j < 6; j++) {
-        Pane pane = new Pane();
-        schedule.add(pane, i, j);
+//    for (int i = 1; i < 7; i++) {
+//      for (int j = 1; j < 6; j++) {
+//        Pane pane = new Pane();
+//        schedule.add(pane, i, j);
+//      }
+//    }
+
+    schedule.paddingProperty().set(new Insets(5));
+
+    Configuration con = new Configuration().configure();
+    SessionFactory sessionFactory = con.buildSessionFactory();
+
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+
+    tx = session.beginTransaction();
+    List lekcje = session.createQuery("FROM Lekcja").list();
+    for (Object o : lekcje) {
+      Lekcja lekcja = (Lekcja) o;
+      int col = 0, row = 0;
+      switch (lekcja.getId_godziny().getGodzina()) {
+        case "8":
+          col = 1;
+          break;
+        case "9":
+          col = 2;
+          break;
+        case "10":
+          col = 3;
+          break;
+        case "11":
+          col = 4;
+          break;
+        case "12":
+          col = 5;
+          break;
+        case "13":
+          col = 6;
+          break;
+        default:
+          break;
+      }
+      switch (lekcja.getId_godziny().getId_dnia().getDzien()) {
+        case "Poniedzialek":
+          row = 1;
+          break;
+        case "Wtorek":
+          row = 2;
+          break;
+        case "Sroda":
+          row = 3;
+          break;
+        case "Czwartek":
+          row = 4;
+          break;
+        case "Piatek":
+          row = 5;
+          break;
+        default:
+          break;
+      }
+      if (col != 0 && row != 0 && lekcja.getId_klasy().getId_klasy() == uczen.getIdKlasy().getId_klasy()) {
+        schedule.add(new Label(lekcja.getId_przedmiotu().getNazwa_przedmiotu() + "\n" + lekcja.getId_nauczyciela().getNazwisko() + "\n" + lekcja.getNr_sali()), col, row);
       }
     }
+    tx.commit();
+
+//    schedule.getChildren().forEach(cell -> {
+//      cell.setOnMouseClicked(event -> {
+//
+////        GridPane.getColumnIndex(cell), GridPane.getRowIndex(cell)
+//
+//
+//        int row = GridPane.getRowIndex(cell);
+//        int col = GridPane.getColumnIndex(cell);
+//
+//
+//
+//
+////        System.out.println(GridPane.getColumnIndex(cell) + " " + GridPane.getRowIndex(cell));
+////        Label text = new Label("text");
+////        schedule.add(text, GridPane.getColumnIndex(cell), GridPane.getRowIndex(cell));
+//      });
+//    });
 
 
-    schedule.getChildren().forEach(cell -> {
-      cell.setOnMouseClicked(event -> {
-        Integer col = GridPane.getColumnIndex(cell);
-        Integer row = GridPane.getRowIndex(cell);
 
-        try {
-          FXMLLoader loader = new FXMLLoader();
-          loader.setLocation(Main.class.getResource("/addNewLesson.fxml"));
-          AnchorPane root = loader.load();
 
-          Stage stage = new Stage();
-          stage.setTitle("Add lesson");
-          stage.setScene(new Scene(root));
-          stage.show();
-        }
-        catch (Exception e){
-          e.printStackTrace();
-        }
-
-        if(col != null && row != null) {
-          System.out.println(col + " " + row);
-          Label lesson = new Label("Nazwa przedmiotu\nProwadzacy\nNumer sali");
-          schedule.add(lesson, col, row);
-        }
-      });
-    });
+//    schedule.getChildren().forEach(cell -> {
+//      cell.setOnMouseClicked(event -> {
+//        Integer col = GridPane.getColumnIndex(cell);
+//        Integer row = GridPane.getRowIndex(cell);
+//
+//        try {
+//          FXMLLoader loader = new FXMLLoader();
+//          loader.setLocation(Main.class.getResource("/addNewLesson.fxml"));
+//          AnchorPane root = loader.load();
+//
+//          Stage stage = new Stage();
+//          stage.setTitle("Add lesson");
+//          stage.setScene(new Scene(root));
+//          stage.show();
+//        }
+//        catch (Exception e){
+//          e.printStackTrace();
+//        }
+//
+//        if(col != null && row != null) {
+//          System.out.println(col + " " + row);
+//          Label lesson = new Label("Nazwa przedmiotu\nProwadzacy\nNumer sali");
+//          schedule.add(lesson, col, row);
+//        }
+//      });
+//    });
 
 
 

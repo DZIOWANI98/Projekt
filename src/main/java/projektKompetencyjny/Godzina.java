@@ -15,10 +15,11 @@ public class Godzina {
     @GenericGenerator(name = "incrementor", strategy = "increment")
     private int id_godziny;
 
-    @Column(name = "id_dnia")
-    private int id_dnia;
+    @ManyToOne
+    @JoinColumn(name = "`Id_dnia`")
+    private Dzien Id_dnia;
 
-    @Column(name = "ktora_godzina")
+    @Column(name = "`Ktora_godzina`")
     private String godzina;
 
     public int getId_godziny() {
@@ -29,12 +30,12 @@ public class Godzina {
         this.id_godziny = id_godziny;
     }
 
-    public int getId_dnia() {
-        return id_dnia;
+    public Dzien getId_dnia() {
+        return Id_dnia;
     }
 
-    public void setId_dnia(int id_dnia) {
-        this.id_dnia = id_dnia;
+    public void setId_dnia(Dzien id_dnia) {
+        this.Id_dnia = id_dnia;
     }
 
     public String getGodzina() {

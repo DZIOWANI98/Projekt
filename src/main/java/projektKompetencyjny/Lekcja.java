@@ -1,10 +1,9 @@
 package projektKompetencyjny;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "lekcja")
@@ -12,16 +11,25 @@ public class Lekcja {
 
     @Id
     @Column(name = "id_lekcji")
+    @GeneratedValue(generator = "incrementor")
+    @GenericGenerator(name = "incrementor", strategy = "increment")
     private int id_lekcji;
 
-    @Column(name = "id_godziny")
-    private int id_godziny;
+    @OneToOne
+    @JoinColumn(name = "id_godziny")
+    private Godzina id_godziny;
 
-    @Column(name = "id_przedmiotu")
-    private int id_przedmiotu;
+    @OneToOne
+    @JoinColumn(name = "id_przedmiotu")
+    private Przedmiot id_przedmiotu;
 
-    @Column(name = "id_nauczyciela")
-    private int id_nauczyciela;
+    @OneToOne
+    @JoinColumn(name = "id_nauczyciela")
+    private Nauczyciel id_nauczyciela;
+
+    @OneToOne
+    @JoinColumn(name = "id_klasy")
+    private Klasa id_klasy;
 
     @Column(name = "sala")
     private int nr_sali;
@@ -34,29 +42,33 @@ public class Lekcja {
         this.id_lekcji = id_lekcji;
     }
 
-    public int getId_godziny() {
+    public Godzina getId_godziny() {
         return id_godziny;
     }
 
-    public void setId_godziny(int id_godziny) {
+    public void setId_godziny(Godzina id_godziny) {
         this.id_godziny = id_godziny;
     }
 
-    public int getId_przedmiotu() {
+    public Przedmiot getId_przedmiotu() {
         return id_przedmiotu;
     }
 
-    public void setId_przedmiotu(int id_przedmiotu) {
+    public void setId_przedmiotu(Przedmiot id_przedmiotu) {
         this.id_przedmiotu = id_przedmiotu;
     }
 
-    public int getId_nauczyciela() {
+    public Nauczyciel getId_nauczyciela() {
         return id_nauczyciela;
     }
 
-    public void setId_nauczyciela(int id_nauczyciela) {
+    public void setId_nauczyciela(Nauczyciel id_nauczyciela) {
         this.id_nauczyciela = id_nauczyciela;
     }
+
+    public Klasa getId_klasy() { return id_klasy; }
+
+    public void setId_klasy(Klasa id_klasy) { this.id_klasy = id_klasy; }
 
     public int getNr_sali() {
         return nr_sali;

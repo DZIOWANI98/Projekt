@@ -10,12 +10,19 @@ import javax.persistence.*;
 public class Dzien {
 
     @Id
-    @Column(name = "id_dnia")
+    @Column(name = "`Id_dnia`")
     @GeneratedValue(generator = "incrementor")
     @GenericGenerator(name = "incrementor", strategy = "increment")
-    private int id_dnia;
+    private int Id_dnia;
 
-    @Column(name = "dzien")
+    @Column(name = "`Dzien`")
     private String dzien;
 
+    public String getDzien() {
+        return dzien;
+    }
+
+    public int getId_dnia() {
+        return Id_dnia;
+    }
 }
