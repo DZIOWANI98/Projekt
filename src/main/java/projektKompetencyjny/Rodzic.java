@@ -32,6 +32,11 @@ public class Rodzic {
     @ManyToMany(mappedBy = "rodzice")
     private List<Uczen> uczen = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_rodzica")
+    private List<Wiadomosci> wiadomosci;
+
+
     public int getId() {
         return id;
     }
@@ -89,5 +94,13 @@ public class Rodzic {
 
     public void setUczen(List<Uczen> uczen) {
         this.uczen = uczen;
+    }
+
+    public List<Wiadomosci> getWiadomosci() {
+        return wiadomosci;
+    }
+
+    public void setWiadomosci(List<Wiadomosci> wiadomosci) {
+        this.wiadomosci = wiadomosci;
     }
 }

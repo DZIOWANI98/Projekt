@@ -265,7 +265,6 @@ public class UiMarksAdmin implements Initializable {
     }
 
     private void refreshLayout1() {
-        listOfStudentsLayout1.clear();
         uczniowie.clear();
         studentMarksLayout1.clear();
         tabela.getItems().clear();
@@ -292,10 +291,6 @@ public class UiMarksAdmin implements Initializable {
             //Commit the transaction
             txn.commit();
         }
-        for (Uczen uczen : uczniowie) {
-            listOfStudentsLayout1.add(uczen.getName() + " " + uczen.getNazwisko());
-        }
-        selectUczen.setItems(listOfStudentsLayout1);
 
         for (Uczen uczen : uczniowie) {
             double suma = 0;
@@ -463,7 +458,6 @@ public class UiMarksAdmin implements Initializable {
             //add your data to the table here.
         }
         tabela.setItems(studentMarksLayout1);
-
     }
 
     @FXML
@@ -505,7 +499,6 @@ public class UiMarksAdmin implements Initializable {
         listOfStudentsLayout2.clear();
         uczniowie.clear();
         studentMarksLayout2.clear();
-        tabela.getItems().clear();
         tabela2.getItems().clear();
         String klasa = selectClass2.getSelectionModel().getSelectedItem();
         for (Klasa klass : klasy) {
@@ -627,7 +620,6 @@ public class UiMarksAdmin implements Initializable {
         listOfStudentsLayout2.clear();
         uczniowie.clear();
         studentMarksLayout2.clear();
-        tabela.getItems().clear();
         tabela2.getItems().clear();
         String klasa = selectClass2.getSelectionModel().getSelectedItem();
         for (Klasa klass : klasy) {

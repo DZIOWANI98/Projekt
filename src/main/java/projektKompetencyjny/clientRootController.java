@@ -53,7 +53,7 @@ public class clientRootController {
 
           root.getTabs().add(3, new Tab());
           root.getTabs().get(3).setText("Komunikator");
-          root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_chat.fxml")));
+            root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_chat_admin.fxml")));
 
           root.getTabs().add(4, new Tab());
           root.getTabs().get(4).setText("Wyloguj");

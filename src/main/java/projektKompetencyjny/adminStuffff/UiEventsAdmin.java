@@ -216,7 +216,7 @@ public class UiEventsAdmin implements Initializable {
             SessionFactory sessionFactory = con.buildSessionFactory();
             Session session = sessionFactory.openSession();
             Transaction txn = session.beginTransaction();
-            Query query = session.createQuery("delete Event where event = :event");
+            Query query = session.createQuery("delete Event E where E.id_event = :event");
             query.setParameter("event", selectedForDelete.getId());
             query.executeUpdate();
             //Commit the transaction

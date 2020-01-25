@@ -43,6 +43,18 @@ public class Nauczyciel {
     @JoinColumn(name = "id_nauczyciela")
     private List<Uwaga> uwagi;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_nauczyciela")
+    private List<Wiadomosci> wiadomosci;
+
+
+    public List<Uwaga> getUwagi() {
+        return uwagi;
+    }
+
+    public void setUwagi(List<Uwaga> uwagi) {
+        this.uwagi = uwagi;
+    }
 
     public int getId_nauczyciela() {
         return id_nauczyciela;
@@ -109,5 +121,13 @@ public class Nauczyciel {
 
     public void setId_przedmiotu(int id_przedmiotu) {
         this.id_przedmiotu = id_przedmiotu;
+    }
+
+    public List<Wiadomosci> getWiadomosci() {
+        return wiadomosci;
+    }
+
+    public void setWiadomosci(List<Wiadomosci> wiadomosci) {
+        this.wiadomosci = wiadomosci;
     }
 }
