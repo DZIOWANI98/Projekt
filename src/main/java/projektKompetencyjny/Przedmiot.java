@@ -48,4 +48,11 @@ public class Przedmiot {
         this.oceny = oceny;
     }
 
+    public List<Nauczyciel> getNauczyciele() {
+        return nauczyciele;
+    }
+
+    public void setNauczyciele(List<Nauczyciel> nauczyciele) {
+        this.nauczyciele = nauczyciele;
+    }
 }

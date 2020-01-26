@@ -177,7 +177,7 @@ public class UiChatAdmin implements Initializable {
             }
         };
         service = Executors.newSingleThreadScheduledExecutor();
-        service.scheduleWithFixedDelay(runnableTask, 0, 10, TimeUnit.SECONDS);
+        service.scheduleWithFixedDelay(runnableTask, 0, 5, TimeUnit.SECONDS);
 
     }
 

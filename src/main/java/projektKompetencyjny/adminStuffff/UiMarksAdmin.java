@@ -49,6 +49,8 @@ public class UiMarksAdmin implements Initializable {
 
     private List<Uczen> uczniowie = new ArrayList<>();
 
+    private List<Przedmiot> przedmioty = new ArrayList<>();
+
     private static final int WAGAPRACYKLASOWEJ = 3;
     private static final int WAGAODPOWIEDZI = 1;
     private static final int WAGAPRACYDOMOWEJ = 1;
@@ -159,6 +161,9 @@ public class UiMarksAdmin implements Initializable {
     @FXML
     private MenuItem editMenuItem;
 
+    @FXML
+    private JFXComboBox<String> selectPrzedmiot;
+
 
     private ObservableList<String> selectClassObservableList = FXCollections.observableArrayList();
     private ObservableList<String> listOfStudentsLayout1 = FXCollections.observableArrayList();
@@ -202,16 +207,18 @@ public class UiMarksAdmin implements Initializable {
         Transaction txn = session.beginTransaction();
         Query query = session.createQuery("FROM Przedmiot where id_przedmiotu = :nauczyciel_id_przedmiotu");
         query.setParameter("nauczyciel_id_przedmiotu", nauczyciel.getPrzedmiot().getId_przedmiotu());
-        List przedmioty = query.list();
-        for (Iterator iterator1 = przedmioty.iterator(); iterator1.hasNext(); ) {
-            Przedmiot przedmiot = (Przedmiot) iterator1.next();
-            przedmiotSelected = przedmiot;
+        List subjects = query.list();
+        for (Iterator iterator1 = subjects.iterator(); iterator1.hasNext(); ) {
+            Przedmiot subject = (Przedmiot) iterator1.next();
+            przedmioty.add(subject);
+            if (subject.getId_przedmiotu() == nauczyciel.getPrzedmiot().getId_przedmiotu()) {
+                przedmiot.add(subject.getNazwa_przedmiotu());
+            }
         }
         //Commit the transaction
-        przedmiot.add(przedmiotSelected.getNazwa_przedmiotu());
+        selectPrzedmiot.setItems(przedmiot);
         selectPrzedmiot2.setItems(przedmiot);
         txn.commit();
-
 
     }
 
@@ -461,9 +468,31 @@ public class UiMarksAdmin implements Initializable {
     }
 
     @FXML
+    public void updateDataPrzedmiotSelected(ActionEvent actionEvent) {
+        if (klasaSelected == null) {
+            errorLabel.setText("Wybierz klasę !");
+            return;
+        }
+        String przedmiotNazwa = selectPrzedmiot.getSelectionModel().getSelectedItem();
+        for (Przedmiot przedmiot : przedmioty) {
+            if (przedmiotNazwa.equals(przedmiot.getNazwa_przedmiotu())) {
+                przedmiotSelected = przedmiot;
+            }
+        }
+        if (przedmiotSelected == null) {
+            errorLabel.setText("fatal error");
+        }
+
+    }
+
+
+    @FXML
     void updateDataStudentSelected(ActionEvent event) {
         if (klasaSelected == null) {
             errorLabel.setText("Wybierz klasę !");
+            return;
+        } else if (przedmiotSelected == null) {
+            errorLabel.setText("Wybierz przedmiot !");
             return;
         }
         String pickedStudentName = selectUczen.getSelectionModel().getSelectedItem();
@@ -584,6 +613,7 @@ public class UiMarksAdmin implements Initializable {
             pickedUczenBeforeDelete = pickedStudent;
             updateOceny();
             refresh();
+            refreshLayout1();
         } else {
             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
             alert1.setTitle("Usuwanie oceny");
@@ -617,7 +647,6 @@ public class UiMarksAdmin implements Initializable {
     }
 
     private void updateOceny() {
-        listOfStudentsLayout2.clear();
         uczniowie.clear();
         studentMarksLayout2.clear();
         tabela2.getItems().clear();
@@ -644,10 +673,6 @@ public class UiMarksAdmin implements Initializable {
             //Commit the transaction
             txn.commit();
         }
-        for (Uczen uczen : uczniowie) {
-            listOfStudentsLayout2.add(uczen.getName() + " " + uczen.getNazwisko());
-        }
-        selectUczen2.setItems(listOfStudentsLayout2);
     }
 
     @FXML
@@ -665,13 +690,11 @@ public class UiMarksAdmin implements Initializable {
             stage.showAndWait();
             updateOceny();
             refresh();
+            refreshLayout1();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
-
-    public void updateDataPrzedmiotSelected(ActionEvent actionEvent) {
-    }
 }

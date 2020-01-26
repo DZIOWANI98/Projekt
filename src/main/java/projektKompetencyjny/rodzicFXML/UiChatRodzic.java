@@ -22,6 +22,9 @@ import projektKompetencyjny.*;
 import projektKompetencyjny.adminStuffff.doTabeliChatAdmin;
 
 import java.net.URL;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -108,6 +111,7 @@ public class UiChatRodzic implements Initializable {
         }
         for (Przedmiot przedmiot : przedmioty) {
             listaPrzedmiotowObservableList.add(przedmiot.getNazwa_przedmiotu());
+            nauczyciele.addAll(przedmiot.getNauczyciele());
         }
         listaPrzedmiotow.setItems(listaPrzedmiotowObservableList);
 
@@ -116,7 +120,6 @@ public class UiChatRodzic implements Initializable {
     @FXML
     void listaPrzedmiotowSelected(ActionEvent event) {
         listaNauczycieliObservableList.clear();
-        nauczyciele.clear();
         String przedmiot = listaPrzedmiotow.getSelectionModel().getSelectedItem();
         for (Przedmiot przedmiott : przedmioty) {
             if (przedmiott.getNazwa_przedmiotu().equals(przedmiot)) {
@@ -126,21 +129,15 @@ public class UiChatRodzic implements Initializable {
         if (przedmiotSelected == null) {
             errorLabel.setText("fatal error");
         }
-        Configuration con = new Configuration().configure();
-        SessionFactory sessionFactory = con.buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        Transaction tx = null;
-        tx = session.beginTransaction();
-        Query query = session.createQuery("FROM Nauczyciel N Where N.id_przedmiotu = :id_przedmiotu");
-        query.setParameter("id_przedmiotu", przedmiotSelected.getId_przedmiotu());
-        List teachers = query.list();
-        for (Iterator iterator1 = teachers.iterator(); iterator1.hasNext(); ) {
-            Nauczyciel teacher = (Nauczyciel) iterator1.next();
-            nauczyciele.add(teacher);
-        }
-        tx.commit();
+
         for (Nauczyciel nauczyciel : nauczyciele) {
-            listaNauczycieliObservableList.add(nauczyciel.getImie() + " " + nauczyciel.getNazwisko());
+            List<Klasa> klasy = nauczyciel.getKlasy();
+            System.out.println(nauczyciel.toString());
+            for (Klasa klas : klasy) {
+                if (klas.getId_klasy() == uczen.getIdKlasy().getId_klasy()) {
+                    listaNauczycieliObservableList.add(nauczyciel.getImie() + " " + nauczyciel.getNazwisko());
+                }
+            }
         }
         listaNauczycieli.setItems(listaNauczycieliObservableList);
     }
@@ -178,7 +175,7 @@ public class UiChatRodzic implements Initializable {
             }
         };
         service = Executors.newSingleThreadScheduledExecutor();
-        service.scheduleWithFixedDelay(runnableTask, 0, 10, TimeUnit.SECONDS);
+        service.scheduleWithFixedDelay(runnableTask, 0, 5, TimeUnit.SECONDS);
 
 
     }
@@ -220,9 +217,39 @@ public class UiChatRodzic implements Initializable {
 
     }
 
-
     @FXML
     public void wyslijDoBazy(ActionEvent actionEvent) {
+        String wiadomoscText = tekstWiadomosci.getText();
+        LocalDate dataWiadomosci = LocalDate.now();
+        String autorWiadomosci = rodzic.getImie() + " " + rodzic.getNazwisko();
+        LocalTime czasWiadomosci = LocalTime.now();
+
+        if (pickedNauczyciel == null) {
+            errorLabel.setText("Brak wybranych pól!");
+        } else if (wiadomoscText.isEmpty()) {
+            errorLabel.setText("Musisz cos wpisać w wiadomości.");
+        } else {
+            errorLabel.setText("");
+            Configuration con = new Configuration().configure();
+            SessionFactory sessionFactory = con.buildSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction tx = null;
+            tx = session.beginTransaction();
+            Wiadomosci wiadomosc = new Wiadomosci();
+            wiadomosc.setWiadomosc(wiadomoscText);
+            wiadomosc.setData(dataWiadomosci);
+            wiadomosc.setAutor(autorWiadomosci);
+            wiadomosc.setCzas(Time.valueOf(czasWiadomosci));
+            wiadomosc.setNauczyciel(pickedNauczyciel);
+            wiadomosc.setRodzic(rodzic);
+            session.save(wiadomosc);
+            tx.commit();
+            tekstWiadomosci.clear();
+        }
 
     }
+
+
+
+
 }
