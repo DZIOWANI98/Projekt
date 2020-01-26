@@ -299,77 +299,13 @@ public class UiMarksAdmin implements Initializable {
             txn.commit();
         }
 
-        for (Uczen uczen : uczniowie) {
-            double suma = 0;
-            srednia = 0;
-            SUMAWAG = 0;
-            StringBuffer oceny_z_kartkowki = new StringBuffer();
-            StringBuffer oceny_z_odpowiedzi = new StringBuffer();
-            StringBuffer oceny_z_pracyKlasowej = new StringBuffer();
-            StringBuffer oceny_z_pracDomowych = new StringBuffer();
-            oceny = uczen.getOceny();
-            for (Oceny ocena : oceny) {
-                if (ocena.getId_przedmiotu().getId_przedmiotu() == nauczyciel.getPrzedmiot().getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia()) {
-                    switch (ocena.getRodzaj_oceny()) {
-                        case "Kartkówka":
-                            suma += (ocena.getOcena() * WAGAKARTKOWKI);
-                            SUMAWAG += WAGAKARTKOWKI;
-                            if (oceny_z_kartkowki.length() == 0) {
-                                oceny_z_kartkowki.append(ocena.getOcena());
-                            } else {
-                                oceny_z_kartkowki.append(", ");
-                                oceny_z_kartkowki.append(ocena.getOcena());
-                            }
-                            break;
-                        case "Praca domowa":
-                            suma += (ocena.getOcena() * WAGAPRACYDOMOWEJ);
-                            SUMAWAG += WAGAPRACYDOMOWEJ;
-                            if (oceny_z_pracDomowych.length() == 0) {
-                                oceny_z_pracDomowych.append(ocena.getOcena());
-                            } else {
-                                oceny_z_pracDomowych.append(", ");
-                                oceny_z_pracDomowych.append(ocena.getOcena());
-                            }
-                            break;
-                        case "Odpowiedź":
-                            suma += (ocena.getOcena() * WAGAODPOWIEDZI);
-                            SUMAWAG += WAGAODPOWIEDZI;
-                            if (oceny_z_odpowiedzi.length() == 0) {
-                                oceny_z_odpowiedzi.append(ocena.getOcena());
-                            } else {
-                                oceny_z_odpowiedzi.append(", ");
-                                oceny_z_odpowiedzi.append(ocena.getOcena());
-                            }
-                            break;
-                        case "Praca klasowa":
-                            suma += (ocena.getOcena() * WAGAPRACYKLASOWEJ);
-                            SUMAWAG += WAGAPRACYKLASOWEJ;
-                            if (oceny_z_pracyKlasowej.length() == 0) {
-                                oceny_z_pracyKlasowej.append(ocena.getOcena());
-                            } else {
-                                oceny_z_pracyKlasowej.append(", ");
-                                oceny_z_pracyKlasowej.append(ocena.getOcena());
-                            }
-                            break;
-                    }
-                }
-            }
-            srednia = (double) suma / SUMAWAG;
-            srednia *= 100;
-            srednia = Math.round(srednia);
-            srednia /= 100;
-            studentMarksLayout1.add(new doTabeliMarksAdminLayout1(uczen.getName() + " " + uczen.getNazwisko(),
-                    oceny_z_pracyKlasowej.toString(), oceny_z_pracDomowych.toString(), oceny_z_kartkowki.toString(),
-                    oceny_z_odpowiedzi.toString(), srednia));
-            //add your data to the table here.
-        }
-        tabela.setItems(studentMarksLayout1);
     }
 
     @FXML
     void updateDataClassSelected(ActionEvent event) {
         listOfStudentsLayout1.clear();
         uczniowie.clear();
+        selectPrzedmiot.getItems().clear();
         studentMarksLayout1.clear();
         tabela.getItems().clear();
         String klasa = selectClass.getSelectionModel().getSelectedItem();
@@ -400,6 +336,30 @@ public class UiMarksAdmin implements Initializable {
         }
         selectUczen.setItems(listOfStudentsLayout1);
 
+        for (Przedmiot subject : przedmioty) {
+            if (subject.getId_przedmiotu() == nauczyciel.getPrzedmiot().getId_przedmiotu()) {
+                przedmiot.add(subject.getNazwa_przedmiotu());
+            }
+        }
+        selectPrzedmiot.setItems(przedmiot);
+
+    }
+
+    @FXML
+    public void updateDataPrzedmiotSelected(ActionEvent actionEvent) {
+        if (klasaSelected == null) {
+            errorLabel.setText("Wybierz klasę !");
+            return;
+        }
+        String przedmiotNazwa = selectPrzedmiot.getSelectionModel().getSelectedItem();
+        for (Przedmiot przedmiot : przedmioty) {
+            if (przedmiotNazwa.equals(przedmiot.getNazwa_przedmiotu())) {
+                przedmiotSelected = przedmiot;
+            }
+        }
+        if (przedmiotSelected == null) {
+            errorLabel.setText("fatal error");
+        }
         for (Uczen uczen : uczniowie) {
             double suma = 0;
             srednia = 0;
@@ -465,23 +425,7 @@ public class UiMarksAdmin implements Initializable {
             //add your data to the table here.
         }
         tabela.setItems(studentMarksLayout1);
-    }
 
-    @FXML
-    public void updateDataPrzedmiotSelected(ActionEvent actionEvent) {
-        if (klasaSelected == null) {
-            errorLabel.setText("Wybierz klasę !");
-            return;
-        }
-        String przedmiotNazwa = selectPrzedmiot.getSelectionModel().getSelectedItem();
-        for (Przedmiot przedmiot : przedmioty) {
-            if (przedmiotNazwa.equals(przedmiot.getNazwa_przedmiotu())) {
-                przedmiotSelected = przedmiot;
-            }
-        }
-        if (przedmiotSelected == null) {
-            errorLabel.setText("fatal error");
-        }
 
     }
 
