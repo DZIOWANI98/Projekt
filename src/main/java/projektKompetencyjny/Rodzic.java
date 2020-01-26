@@ -17,7 +17,7 @@ public class Rodzic {
     @GenericGenerator(name = "incrementor", strategy = "increment")
     private int id;
 
-    @Column(name = "imię")
+    @Column(name = "imie")
     private String imie;
 
     @Column(name = "nazwisko")
@@ -26,7 +26,7 @@ public class Rodzic {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "hasło")
+    @Column(name = "haslo")
     private String haslo;
 
     @ManyToMany(mappedBy = "rodzice")

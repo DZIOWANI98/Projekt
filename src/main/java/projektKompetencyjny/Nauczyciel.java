@@ -16,7 +16,7 @@ public class Nauczyciel {
     @GenericGenerator(name = "incrementor", strategy = "increment")
     private int id_nauczyciela;
 
-    @Column(name = "imię")
+    @Column(name = "imie")
     private String imie;
 
     @Column(name = "nazwisko")
@@ -25,7 +25,7 @@ public class Nauczyciel {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "hasło")
+    @Column(name = "haslo")
     private String haslo;
 
     @ManyToOne(cascade = CascadeType.ALL)

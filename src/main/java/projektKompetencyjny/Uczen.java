@@ -17,13 +17,13 @@ public class Uczen {
     @GenericGenerator(name = "incrementor", strategy = "increment")
     private int Id_Ucznia;
 
-    @Column(name = "imię")
+    @Column(name = "imie")
     private String name;
 
     @Column(name = "nazwisko")
     private String nazwisko;
 
-    @Column(name = "hasło")
+    @Column(name = "haslo")
     private String haslo;
 
     @Column(name = "email")
@@ -35,7 +35,7 @@ public class Uczen {
     @Column(name = "`miejsce urodzenia`")
     private String miejsceUrodzenia;
 
-    @Column(name = "dojeżdża")
+    @Column(name = "dojezdza")
     private boolean czyDojezdza;
 
     @OneToOne
