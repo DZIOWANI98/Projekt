@@ -672,4 +672,6 @@ public class UiMarksAdmin implements Initializable {
     }
 
 
+    public void updateDataPrzedmiotSelected(ActionEvent actionEvent) {
+    }
 }
