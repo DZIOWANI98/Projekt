@@ -201,7 +201,7 @@ public class UiMarksAdmin implements Initializable {
         Session session = sessionFactory.openSession();
         Transaction txn = session.beginTransaction();
         Query query = session.createQuery("FROM Przedmiot where id_przedmiotu = :nauczyciel_id_przedmiotu");
-        query.setParameter("nauczyciel_id_przedmiotu", nauczyciel.getId_przedmiotu());
+        query.setParameter("nauczyciel_id_przedmiotu", nauczyciel.getPrzedmiot().getId_przedmiotu());
         List przedmioty = query.list();
         for (Iterator iterator1 = przedmioty.iterator(); iterator1.hasNext(); ) {
             Przedmiot przedmiot = (Przedmiot) iterator1.next();
@@ -302,7 +302,7 @@ public class UiMarksAdmin implements Initializable {
             StringBuffer oceny_z_pracDomowych = new StringBuffer();
             oceny = uczen.getOceny();
             for (Oceny ocena : oceny) {
-                if (ocena.getId_przedmiotu().getId_przedmiotu() == nauczyciel.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia()) {
+                if (ocena.getId_przedmiotu().getId_przedmiotu() == nauczyciel.getPrzedmiot().getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia()) {
                     switch (ocena.getRodzaj_oceny()) {
                         case "Kartkówka":
                             suma += (ocena.getOcena() * WAGAKARTKOWKI);
@@ -403,7 +403,7 @@ public class UiMarksAdmin implements Initializable {
             StringBuffer oceny_z_pracDomowych = new StringBuffer();
             oceny = uczen.getOceny();
             for (Oceny ocena : oceny) {
-                if (ocena.getId_przedmiotu().getId_przedmiotu() == nauczyciel.getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia()) {
+                if (ocena.getId_przedmiotu().getId_przedmiotu() == nauczyciel.getPrzedmiot().getId_przedmiotu() && ocena.getUczen().getId_Ucznia() == uczen.getId_Ucznia()) {
                     switch (ocena.getRodzaj_oceny()) {
                         case "Kartkówka":
                             suma += (ocena.getOcena() * WAGAKARTKOWKI);

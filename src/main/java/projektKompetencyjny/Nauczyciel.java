@@ -28,8 +28,9 @@ public class Nauczyciel {
     @Column(name = "hasło")
     private String haslo;
 
-    @Column(name = "id_przedmiotu")
-    private int id_przedmiotu;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_przedmiotu")
+    private Przedmiot przedmiot;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -115,19 +116,19 @@ public class Nauczyciel {
         this.klasy = klasy;
     }
 
-    public int getId_przedmiotu() {
-        return id_przedmiotu;
-    }
-
-    public void setId_przedmiotu(int id_przedmiotu) {
-        this.id_przedmiotu = id_przedmiotu;
-    }
-
     public List<Wiadomosci> getWiadomosci() {
         return wiadomosci;
     }
 
     public void setWiadomosci(List<Wiadomosci> wiadomosci) {
         this.wiadomosci = wiadomosci;
+    }
+
+    public Przedmiot getPrzedmiot() {
+        return przedmiot;
+    }
+
+    public void setPrzedmiot(Przedmiot przedmiot) {
+        this.przedmiot = przedmiot;
     }
 }

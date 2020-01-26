@@ -16,6 +16,10 @@ public class Przedmiot {
     @Column(name = "nazwa_przedmiotu")
     private String nazwa_przedmiotu;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_przedmiotu")
+    private List<Nauczyciel> nauczyciele;
+
     @OneToMany
     @JoinColumn(name = "id_przedmiotu")
     private List<Oceny> oceny = new ArrayList<>();
@@ -43,4 +47,5 @@ public class Przedmiot {
     public void setOceny(List<Oceny> oceny) {
         this.oceny = oceny;
     }
+
 }

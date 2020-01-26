@@ -22,6 +22,9 @@ import org.hibernate.query.Query;
 import projektKompetencyjny.*;
 
 import java.net.URL;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -191,6 +194,11 @@ public class UiChatAdmin implements Initializable {
             Wiadomosci msgg = (Wiadomosci) iterator1.next();
             wiadomosci.add(msgg);
         }
+        Collections.sort(wiadomosci, new Comparator<Wiadomosci>() {
+            public int compare(Wiadomosci left, Wiadomosci right) {
+                return left.getId_wiadomosci() - right.getId_wiadomosci();
+            }
+        });
         for (Wiadomosci wiad : wiadomosci) {
             if (wiad.getRodzic().getId() == pickedRodzic.getId() && wiad.getNauczyciel().getId_nauczyciela() == nauczyciel.getId_nauczyciela()) {
                 wiadomosciObservableList.add(new doTabeliChatAdmin(wiad.getData().toString(), wiad.getCzas().toString(),
@@ -207,7 +215,6 @@ public class UiChatAdmin implements Initializable {
                 tabelaMain.refresh();
             }
         });
-        System.out.println("AAAAAAAAAAAAAAAA");
     }
 
 /*
@@ -246,7 +253,33 @@ public class UiChatAdmin implements Initializable {
 
     @FXML
     void wyslijDoBazy(ActionEvent event) {
+        String wiadomoscText = tekstWiadomosci.getText();
+        LocalDate dataWiadomosci = LocalDate.now();
+        String autorWiadomosci = nauczyciel.getImie() + " " + nauczyciel.getNazwisko();
+        LocalTime czasWiadomosci = LocalTime.now();
 
+        if (pickedRodzic == null) {
+            errorLabel.setText("Brak wybranych pól!");
+        } else if (wiadomoscText.isEmpty()) {
+            errorLabel.setText("Musisz cos wpisać w wiadomości.");
+        } else {
+            errorLabel.setText("");
+            Configuration con = new Configuration().configure();
+            SessionFactory sessionFactory = con.buildSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction tx = null;
+            tx = session.beginTransaction();
+            Wiadomosci wiadomosc = new Wiadomosci();
+            wiadomosc.setWiadomosc(wiadomoscText);
+            wiadomosc.setData(dataWiadomosci);
+            wiadomosc.setAutor(autorWiadomosci);
+            wiadomosc.setCzas(Time.valueOf(czasWiadomosci));
+            wiadomosc.setNauczyciel(nauczyciel);
+            wiadomosc.setRodzic(pickedRodzic);
+            session.save(wiadomosc);
+            tx.commit();
+            tekstWiadomosci.clear();
+        }
     }
 
 
