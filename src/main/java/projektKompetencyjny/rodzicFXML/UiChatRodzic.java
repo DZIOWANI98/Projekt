@@ -227,7 +227,7 @@ public class UiChatRodzic implements Initializable {
         if (pickedNauczyciel == null) {
             errorLabel.setText("Brak wybranych pól!");
         } else if (wiadomoscText.isEmpty()) {
-            errorLabel.setText("Musisz cos wpisać w wiadomości.");
+            errorLabel.setText("Musisz coś wpisać w wiadomości.");
         } else {
             errorLabel.setText("");
             Configuration con = new Configuration().configure();
