@@ -87,6 +87,22 @@ public class clientRootController {
           root.getTabs().add(6, new Tab());
           root.getTabs().get(6).setText("Wyloguj");
           root.getTabs().get(6).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_wyloguj.fxml")));
+        case "admin":
+          root.getTabs().add(0, new Tab());
+          root.getTabs().get(0).setText("Zarządanie nauczycielami");
+          root.getTabs().get(0).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_addNauczyciel.fxml")));
+
+          root.getTabs().add(1, new Tab());
+          root.getTabs().get(1).setText("Zarządzanie uczniami");
+          root.getTabs().get(1).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_addUczen.fxml")));
+
+          root.getTabs().add(2, new Tab());
+          root.getTabs().get(2).setText("Zarządzanie rodzicami");
+          root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_addRodzic.fxml")));
+
+          root.getTabs().add(6, new Tab());
+          root.getTabs().get(6).setText("Wyloguj");
+          root.getTabs().get(6).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_wyloguj.fxml")));
           break;
         default:
           throw new IllegalArgumentException("User status error!");
