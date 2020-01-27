@@ -124,7 +124,7 @@ public class scheduleController implements Initializable {
           UiLessonProperties controller = loader.getController();
           for (Object o : lekcje) {
             Lekcja lekcja = (Lekcja) o;
-            if (lekcja.getId_godziny().getId_dnia().getId_dnia() == GridPane.getRowIndex(cell) && lekcja.getId_godziny().getId_godziny() == GridPane.getColumnIndex(cell)) {
+            if (lekcja.getId_godziny().getId_dnia().getId_dnia() == GridPane.getRowIndex(cell) && lekcja.getId_godziny().getId_godziny()%6 == GridPane.getColumnIndex(cell) && lekcja.getId_klasy().getId_klasy() == uczen.getIdKlasy().getId_klasy()) {
               controller.setLekcja(lekcja);
               controller.generateUserInteface();
               Stage stage = new Stage();
