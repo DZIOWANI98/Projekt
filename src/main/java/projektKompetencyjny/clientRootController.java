@@ -100,9 +100,9 @@ public class clientRootController {
           root.getTabs().get(2).setText("Zarządzanie rodzicami");
           root.getTabs().get(2).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_addRodzic.fxml")));
 
-          root.getTabs().add(6, new Tab());
-          root.getTabs().get(6).setText("Wyloguj");
-          root.getTabs().get(6).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_wyloguj.fxml")));
+          root.getTabs().add(3, new Tab());
+          root.getTabs().get(3).setText("Wyloguj");
+          root.getTabs().get(3).setContent(FXMLLoader.load(getClass().getClassLoader().getResource("ui_wyloguj.fxml")));
           break;
         default:
           throw new IllegalArgumentException("User status error!");

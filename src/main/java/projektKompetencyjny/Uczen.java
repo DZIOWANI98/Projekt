@@ -3,6 +3,7 @@ package projektKompetencyjny;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,15 +44,22 @@ public class Uczen {
     private Klasa idKlasy;
 
     @Column(name = "`data urodzenia`")
-    private String dataUrodzenia;
-
-    @ManyToMany
+    private LocalDate dataUrodzenia;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(
             name = "relacje",
             joinColumns = {@JoinColumn(name = "id_ucznia")},
             inverseJoinColumns = {@JoinColumn(name = "id_rodzica")}
     )
     private List<Rodzic> rodzice;
+
+    public LocalDate getDataUrodzenia() {
+        return dataUrodzenia;
+    }
+
+    public void setDataUrodzenia(LocalDate dataUrodzenia) {
+        this.dataUrodzenia = dataUrodzenia;
+    }
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_ucznia")
@@ -157,14 +165,6 @@ public class Uczen {
 
     public void setIdKlasy(Klasa idKlasy) {
         this.idKlasy = idKlasy;
-    }
-
-    public String getDataUrodzenia() {
-        return dataUrodzenia;
-    }
-
-    public void setDataUrodzenia(String dataUrodzenia) {
-        this.dataUrodzenia = dataUrodzenia;
     }
 
     public List<Rodzic> getRodzice() {

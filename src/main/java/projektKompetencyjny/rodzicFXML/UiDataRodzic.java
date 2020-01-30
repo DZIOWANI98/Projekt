@@ -49,7 +49,7 @@ public class UiDataRodzic implements Initializable {
         imie.setText(uczen.getName());
         nazwisko.setText(uczen.getNazwisko());
         miejsceZamieszkania.setText(uczen.getMiejsceZamieszkania());
-        dataUrodzenia.setText(uczen.getDataUrodzenia());
+        dataUrodzenia.setText(uczen.getDataUrodzenia().toString());
         miejsceUrodzenia.setText(uczen.getMiejsceUrodzenia());
         email.setText(uczen.getEmail());
         klasa.setText(uczen.getIdKlasy().getNazwa_klasy());

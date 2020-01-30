@@ -24,10 +24,32 @@ import java.util.ResourceBundle;
 
 public class loginController implements Initializable {
 
-    @FXML private TextField username_in;
-    @FXML private PasswordField password_in;
-    @FXML private Button login_button;
-    @FXML private Label error_message;
+    @FXML
+    private TextField username_in;
+    @FXML
+    private PasswordField password_in;
+    @FXML
+    private Button login_button;
+    @FXML
+    private Label error_message;
+
+    static ArrayList<Uczen> uczniow = new ArrayList<>();
+
+    static ArrayList<Rodzic> rodzics = new ArrayList<>();
+
+    static ArrayList<Nauczyciel> nauczyciels = new ArrayList<>();
+
+    public static ArrayList<Uczen> getUczeniowie() {
+        return uczniow;
+    }
+
+    public static ArrayList<Rodzic> getRodzics() {
+        return rodzics;
+    }
+
+    public static ArrayList<Nauczyciel> getNauczyciels() {
+        return nauczyciels;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,6 +63,7 @@ public class loginController implements Initializable {
             ArrayList<Uczen> uczniowe = new ArrayList<>();
             ArrayList<Nauczyciel> nauczyciele = new ArrayList<>();
             ArrayList<Rodzic> rodzice = new ArrayList<>();
+            ArrayList<Admin> admin = new ArrayList<>();
 
 
             Configuration con = new Configuration().configure();
@@ -66,6 +89,7 @@ public class loginController implements Initializable {
                 for (Iterator iterator1 = employees.iterator(); iterator1.hasNext();){
                     Uczen employee = (Uczen) iterator1.next();
                     uczniowe.add(employee);
+                    uczniow.add(employee);
                     if(employee.getEmail().equals(username) && employee.getHaslo().equals(password)){
                         controller.setUserStatus("uczen");
                         setGlobalUczen.setUczen(employee);
@@ -78,6 +102,7 @@ public class loginController implements Initializable {
                 for (Iterator iterator1 = teachers.iterator(); iterator1.hasNext();){
                     Nauczyciel teacher = (Nauczyciel) iterator1.next();
                     nauczyciele.add(teacher);
+                    nauczyciels.add(teacher);
                     if(teacher.getEmail().equals(username) && teacher.getHaslo().equals(password)){
                         controller.setUserStatus("nauczyciel");
                         setGlobalNauczyciel.setNauczyciel(teacher);
@@ -91,7 +116,8 @@ public class loginController implements Initializable {
                 for (Iterator iterator1 = parents.iterator(); iterator1.hasNext();){
                     Rodzic parent = (Rodzic) iterator1.next();
                     rodzice.add(parent);
-                    if(parent.getEmail().equals(username) && parent.getHaslo().equals(password)){
+                    rodzics.add(parent);
+                    if (parent.getEmail().equals(username) && parent.getHaslo().equals(password)) {
                         controller.setUserStatus("rodzic");
                         setGlobalRodzic.setRodzic(parent);
                     }
@@ -99,7 +125,20 @@ public class loginController implements Initializable {
                 tx.commit();
 
 
-                if(controller.getUserStatus().matches("uczen|rodzic|nauczyciel")) {
+                tx = session.beginTransaction();
+                List admini = session.createQuery("FROM Admin").list();
+                for (Iterator iterator1 = admini.iterator(); iterator1.hasNext(); ) {
+                    Admin admin1 = (Admin) iterator1.next();
+                    admin.add(admin1);
+                    if (admin1.getEmail().equals(username) && admin1.getHaslo().equals(password)) {
+                        controller.setUserStatus("admin");
+                        setGlobalAdmin.setAdmin(admin1);
+                    }
+                }
+                tx.commit();
+
+
+                if (controller.getUserStatus().matches("uczen|rodzic|nauczyciel|admin")) {
                     controller.generateUserInterface();
                     Stage stage = new Stage();
                     if (controller.getUserStatus().equals("uczen")) {
@@ -108,6 +147,8 @@ public class loginController implements Initializable {
                         stage.setTitle("Panel rodzica");
                     } else if (controller.getUserStatus().equals("nauczyciel")) {
                         stage.setTitle("Panel nauczyciela");
+                    } else if (controller.getUserStatus().equals("admin")) {
+                        stage.setTitle("Panel admina");
                     }
                     stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/graduate.png")));
                     stage.setScene(new Scene(root));
