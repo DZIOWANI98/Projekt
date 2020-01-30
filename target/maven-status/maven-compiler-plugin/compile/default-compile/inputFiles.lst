@@ -1,5 +1,7 @@
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\rodzicFXML\UiScheduleRodzic.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\events\eventsController.java
+C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\admin\doTabeliUiAdminNauczyciel.java
+C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\admin\UiAddNauczyciel.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\Uczy.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\Lekcja.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\Main.java
@@ -8,6 +10,7 @@ C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\marks\m
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\setGlobalRodzic.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\rodzicFXML\doTabeliChatRodzic.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\event_uczen\UiEventUczen.java
+C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\admin\UiAddRodzic.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\chat\chatController.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\doTabeliUcznia.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\rodzicFXML\UiDataRodzic.java
@@ -18,6 +21,7 @@ C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\Klasa.j
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\schedule\scheduleController.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\Nauczyciel.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\adminStuffff\UiMarksAdmin.java
+C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\Admin.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\data\dataController.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\rodzicFXML\UiMarkRodzic.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\rodzicFXML\UiEventUczenRodzic.java
@@ -26,6 +30,7 @@ C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\doTabel
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\login\wylogujController.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\Dzien.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\rodzicFXML\UiChatRodzic.java
+C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\admin\UiAddUczen.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\Oceny.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\schedule\addNewLessonController.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\adminStuffff\UiUwagiAdmin.java
@@ -33,13 +38,16 @@ C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\adminSt
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\login\loginController.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\adminStuffff\doTabeliMarksAdminLayout1.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\Wiadomosci.java
+C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\admin\doTabeliUiAdminUczen.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\Godzina.java
+C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\admin\doTabeliUiAdminRodzic.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\Relacje.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\adminStuffff\UiChatAdmin.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\Event.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\Uwaga.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\schedule\UiLessonProperties.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\adminStuffff\Singleton.java
+C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\setGlobalAdmin.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\adminStuffff\UiEventAdminEdit.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\adminStuffff\UiEventsAdmin.java
 C:\Users\Mihau\IdeaProjects\ProjektV3\src\main\java\projektKompetencyjny\rodzicFXML\UiRodzicUwagi.java

@@ -161,15 +161,20 @@
             </GridPane>
             <TableView fx:id="table" editable="true" prefHeight="202.0" prefWidth="600.0" stylesheets="@style/style.css">
                <columns>
-                  <TableColumn fx:id="imieColumn" minWidth="50.0" prefWidth="50.0" sortable="false" text="Imie" />
-                  <TableColumn fx:id="nazwiskoColumn" minWidth="50.0" prefWidth="50.0" sortable="false" text="Nazwisko" />
-                  <TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" visible="false" />
-                  <TableColumn fx:id="emailColumn" minWidth="50.0" prefWidth="50.0" sortable="false" text="Email" />
-                  <TableColumn fx:id="dataUrodzeniaColumn" minWidth="50.0" prefWidth="50.0" sortable="false" text="Data urodzenia" />
-                  <TableColumn fx:id="klasaColumn" prefWidth="10.0" sortable="false" text="Klasa" />
-                  <TableColumn fx:id="mZamieszkaniaColumn" minWidth="50.0" prefWidth="50.0" sortable="false" text="M. zamieszkania" />
-                  <TableColumn fx:id="mUrodzeniaColumn" minWidth="50.0" prefWidth="50.0" sortable="false" text="M. urodzenia" />
-                  <TableColumn fx:id="dojezdzaColumn" minWidth="20.0" prefWidth="20.0" sortable="false" text="Dojeżdża" />
+                   <TableColumn fx:id="imieColumn" minWidth="50.0" prefWidth="50.0" sortable="false" text="Imie"/>
+                   <TableColumn fx:id="nazwiskoColumn" minWidth="50.0" prefWidth="50.0" sortable="false"
+                                text="Nazwisko"/>
+                   <TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" visible="false"/>
+                   <TableColumn fx:id="emailColumn" minWidth="50.0" prefWidth="50.0" sortable="false" text="Email"/>
+                   <TableColumn fx:id="dataUrodzeniaColumn" minWidth="50.0" prefWidth="50.0" sortable="false"
+                                text="Data urodzenia"/>
+                   <TableColumn fx:id="klasaColumn" prefWidth="10.0" sortable="false" text="Klasa"/>
+                   <TableColumn fx:id="mZamieszkaniaColumn" minWidth="50.0" prefWidth="50.0" sortable="false"
+                                text="M. zamieszkania"/>
+                   <TableColumn fx:id="mUrodzeniaColumn" minWidth="50.0" prefWidth="50.0" sortable="false"
+                                text="M. urodzenia"/>
+                   <TableColumn fx:id="dojezdzaColumn" minWidth="20.0" prefWidth="20.0" sortable="false"
+                                text="Dojeżdża"/>
                </columns>
                <VBox.margin>
                   <Insets />
